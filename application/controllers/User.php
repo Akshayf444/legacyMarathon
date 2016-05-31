@@ -227,16 +227,9 @@ class User extends MY_Controller {
             $data['show'] = $this->User_model->getDoctor($conditions);
         }
 
-        $data = array('title' => 'Young Doctor List', 'content' => 'User/view_doctor', 'view_data' => $data, 'page_title' => ' Doctor List');
+        $data = array('title' => 'Doctor List', 'content' => 'User/view_doctor', 'view_data' => $data, 'page_title' => ' Doctor List');
         $this->load->view('template3', $data);
 
-
-
-//        
-//        $tm_id = $this->TM_Emp_Id;
-//            $data['show'] = $this->User_model->getDoctor($tm_id);
-//                $data = array('title' => 'Doctor List', 'content' => 'User/view_doctor', 'view_data' => $data, 'page_title' => 'Doctor List');
-//        $this->load->view('template3', $data);
     }
 
     public function view_chemist() {
