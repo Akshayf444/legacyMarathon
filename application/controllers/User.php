@@ -193,15 +193,16 @@ class User extends MY_Controller {
 
     public function view_doctor() {
         $conditions = array();
+        $conditions = array(
+            'status = 1'
+        );
         $data = array();
         if ($this->is_logged_in('TM') || $this->input->get('TM_Emp_Id')) {
-            $conditions = array(
-                'status = 1'
-            );
+
             $tm_id = $this->is_logged_in('TM') ? $this->TM_Emp_Id : $this->input->get('TM_Emp_Id');
             array_push($conditions, 'd.tm_id = ' . $tm_id);
         }
-        
+
         if ($this->is_logged_in('SM')) {
             $SM_Emp_Id = $this->Emp_Id;
             $bmlist = $this->User_model->getbm(array('SM_Emp_Id = ' . $SM_Emp_Id));
@@ -213,7 +214,7 @@ class User extends MY_Controller {
                 'status = 1', 'SM_Emp_Id = ' . $SM_Emp_Id
             ));
         }
-        
+
         if ($this->is_logged_in('BM') || $this->input->get('BM_Emp_Id')) {
             $BM_Emp_Id = $this->is_logged_in('BM') ? $this->Emp_Id : $this->input->get('BM_Emp_Id');
             $tmlist = $this->User_model->getEmployee(array('BM_Emp_Id = ' . $BM_Emp_Id));
@@ -221,22 +222,15 @@ class User extends MY_Controller {
             if ($this->input->get('TM_Emp_Id') > 0) {
                 $data['tmlist'] = '<select class="btn btn-default" name="TM_Emp_Id"><option value="0"  >Select TM</option>' . $this->Master_Model->generateDropdown($tmlist, 'TM_Emp_Id', 'TM_Name', $this->input->get('TM_Emp_Id')) . '</select>';
             }
+            array_push($conditions, 'e.BM_Emp_Id = ' . $BM_Emp_Id);
         }
-        
+
         if (!empty($conditions)) {
             $data['show'] = $this->User_model->getDoctor($conditions);
         }
 
         $data = array('title' => 'Young Doctor List', 'content' => 'User/view_doctor', 'view_data' => $data, 'page_title' => ' Doctor List');
         $this->load->view('template3', $data);
-
-
-
-//        
-//        $tm_id = $this->TM_Emp_Id;
-//            $data['show'] = $this->User_model->getDoctor($tm_id);
-//                $data = array('title' => 'Doctor List', 'content' => 'User/view_doctor', 'view_data' => $data, 'page_title' => 'Doctor List');
-//        $this->load->view('template3', $data);
     }
 
     public function view_chemist() {
