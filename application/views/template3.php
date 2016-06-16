@@ -62,21 +62,19 @@
                     <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
                         <span class="sr-only">Toggle navigation</span>
                     </a>
-                   
-                    <h6 style="text-align: center; font-size: 18px">Welcome to Legacy Marathon</h6>
-                    
+
+                    <b class="hidden-xs"  style="font-size: large;    padding: 13px 15px;float: left" >Welcome to Legacy Marathon</b>
+
                     <!-- Navbar Right Menu -->
                     <div class="navbar-custom-menu">
-                       
 
-                           
                         <ul class="nav navbar-nav">
-                         
-                               
+
+
                             <!-- User Account Menu -->
                             <li class="dropdown user user-menu">
                                 <!-- Menu Toggle Button -->
-                              
+
                                 <?php $CI = & get_instance(); ?>
                                 <p style="padding-top: 10px;color: #FFFFFF" ><span class=""><?php echo isset($CI->Full_Name) ? $CI->Full_Name . "&nbsp" : ''; ?></span>
                                     <a class="text-aqua" href="<?php echo site_url('User/logout'); ?>">
@@ -123,7 +121,7 @@
                                 <li class=""><a href="<?php echo site_url('User/view_chemist'); ?>"><i class="fa fa-circle-o"></i>  View Doctor</a></li>
                             </ul>
                         </li>
-                        
+
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-dashboard"></i> <span>SCAT</span> <i class="fa fa-angle-left pull-right"></i>
@@ -137,7 +135,7 @@
                                 <li class=""><a href="<?php echo site_url('User/view_scat'); ?>"><i class="fa fa-circle-o"></i>  View Doctor</a></li>
                             </ul>
                         </li>
-<li class="treeview">
+                        <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-dashboard"></i> <span>TOUR</span> <i class="fa fa-angle-left pull-right"></i>
                             </a>

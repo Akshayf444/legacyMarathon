@@ -219,7 +219,7 @@ class User extends MY_Controller {
             $BM_Emp_Id = $this->is_logged_in('BM') ? $this->Emp_Id : $this->input->get('BM_Emp_Id');
             $tmlist = $this->User_model->getEmployee(array('BM_Emp_Id = ' . $BM_Emp_Id));
             $data['tmlist'] = '<select class="btn btn-default" name="TM_Emp_Id"><option value="0" >Select TM</option>' . $this->Master_Model->generateDropdown($tmlist, 'TM_Emp_Id', 'TM_Name') . '</select>';
-            if ($this->input->get('TM_Emp_Id') > 0) {
+            if ($this->input->get('TM_Emp_Id') != '') {
                 $data['tmlist'] = '<select class="btn btn-default" name="TM_Emp_Id"><option value="0"  >Select TM</option>' . $this->Master_Model->generateDropdown($tmlist, 'TM_Emp_Id', 'TM_Name', $this->input->get('TM_Emp_Id')) . '</select>';
             }
             array_push($conditions, 'e.BM_Emp_Id = ' . $BM_Emp_Id);
