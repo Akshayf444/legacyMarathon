@@ -1,4 +1,5 @@
 <div class="row">
+
            <div class="col-xs-12 ">
         <div class="panel">
             <?php
@@ -17,6 +18,7 @@
             </form>
         </div>
     </div>
+
     <div class="col-lg-12 table-responsive" >
         <table class="table table-bordered table-hover panel" id="datatable">
             <thead>
@@ -29,7 +31,9 @@
                     <th>POB Of AEROCORT ROTACAPS</th>
                     <th>POBOf AEROCORT_MDI</th>
                     <th>Other</th>
-                   
+
+                    <th>Mobile No</th>
+
                     <th>Name of Legendary Chemist Met</th>
 
 
@@ -43,7 +47,7 @@
                 $count = 1;
                 if (!empty($show)) {
                     foreach ($show as $row) :
-                        $mobile=  explode(',', $row->Mobile_no)
+
                         ?><tr>  
                             <td data-title="Sr"><?php echo $count++; ?></td>
                             <td data-title="No Of Chemist Met"><?php echo $row->No_of_Chemist_Met; ?></td>
@@ -53,6 +57,7 @@
                             <td data-title="POB Of AEROCORT ROTACAPS"><?php echo $row->AEROCORT_ROTACAPS; ?></td> 
                             <td data-title="POB Of AEROCORT MDI"><?php echo $row->AEROCORT_MDI; ?></td>
                             <td data-title="Other"><?php echo $row->Other; ?></td>  
+
                          
                             <td data-title="Name of Legendary Chemist Met"><?php echo $row->Legendary_Chemist_Met?>[<?php echo $row->Mobile_no; ?> ] &nbsp; 
                             <?php echo $row->Legendary_Chemist_Met1?>[<?php echo $row->Mobile_no1; ?> ] &nbsp;
@@ -63,6 +68,7 @@
                             
                             
                             </td>
+
 
 
                             <td>  

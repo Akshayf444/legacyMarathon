@@ -34,49 +34,58 @@ echo form_open('User/addchemist', $attribute);
     <div class="row">
         <div class="form-group">
             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
+
                 <input type="text" class="form-control" value="" name="Legendary_Chemist_Met" placeholder="Name of Legendary Chemist Met"/> 
             </div>  
             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
                 <input type="number" class="form-control" value="" name="Mobile_no" placeholder="Mobile No" /> 
+
             </div>
         </div> </div> <br>
         <div class="row">
             <div class="form-group">
             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
+
                 <input type="text" class="form-control" value="" name="Legendary_Chemist_Met1" placeholder="Name of Legendary Chemist Met"/> 
             </div>
              <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
                  <input type="number" class="form-control" value="" name="Mobile_no1" placeholder="Mobile No" /> 
-             </div>
+
             </div> 
         </div> <br>
             <div class="row"> 
                 <div class="form-group">
                 <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6"> 
+
                     <input type="text" class="form-control" value="" name="Legendary_Chemist_Met2" placeholder="Name of Legendary Chemist Met"/> 
                 </div>
              <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
                  <input type="number" class="form-control" value="" name="Mobile_no2" placeholder="Mobile No" /> 
-             </div>
-                </div> </div> <br>
+=
+             </div> </div></div> <br>
                 <div class="row">
                     <div class="form-group">
                     <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
+
                         <input type="text" class="form-control" value="" name="Legendary_Chemist_Met3" placeholder="Name of Legendary Chemist Met"/> 
                     </div>
              <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
                  <input type="number" class="form-control" value="" name="Mobile_no3" placeholder="Mobile No" />
-             </div>
+
+                        
+                    </div>
+             
                 </div> 
                 </div> <br>
         <div class="row">
             <div class="form-group">
             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
+
                 <input type="text" class="form-control" value="" name="Legendary_Chemist_Met4" placeholder="Name of Legendary Chemist Met"/>
             </div>
         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
             <input type="number" class="form-control" value="" name="Mobile_no4" placeholder="Mobile No" />
-        </div>
+
             </div></div>
     </div> <br>
     

@@ -41,10 +41,11 @@ class User_model extends CI_Model {
 
     public function addchemist($data) {
         $this->db->insert('chemist', $data);
-    return $this->db->insert_id();
+
     }
     public function addchemist_data($data) {
         $this->db->insert('chemist_data', $data);
+
 //        return $this->db->insert_id;
     }
 
@@ -66,18 +67,18 @@ class User_model extends CI_Model {
     public function del_chemist($id, $data) {
         $this->db->where('chemist_id', $id);
         $this->db->update('chemist', $data);
-        echo $this->db->last_query();
+
     }
      public function del_chemistdata($id, $data) {
         $this->db->where('chemist_id', $id);
         $this->db->update('chemist_data', $data);
-        echo $this->db->last_query();
+  
     }
 
     public function del_scat($id, $data) {
         $this->db->where('Scat_id', $id);
         $this->db->update('SCAT', $data);
-        
+
     }
 
     public function del_tour($id, $data) {
@@ -92,7 +93,9 @@ class User_model extends CI_Model {
     }
 
     public function find_by_chemistid($id) {
+
         $sql = "Select *,c.chemist_id as id ,cd.chemist_id as data_id from chemist c left join  chemist_data cd on c.chemist_id=cd.chemist_id where c.chemist_id ='$id'and c.status='1'";
+
         $query = $this->db->query($sql);
         return $query->row();
     }
@@ -116,10 +119,11 @@ class User_model extends CI_Model {
             $sql.=" WHERE " . join(" AND ", $conditions);
         }
         
-     
+
         $query = $this->db->query($sql);
         return $query->result();
     }
+
 
     public function getchemist($conditions = array()) {
         $sql = "select * from chemist d INNER JOIN tbl_employee_master e ON e.TM_Emp_Id = d.tm_id left JOIN chemist_data cd on d.chemist_id= cd.chemist_id ";
@@ -129,32 +133,41 @@ class User_model extends CI_Model {
         }
         
      
+
         $query = $this->db->query($sql);
         return $query->result();
     }
 
-   public function getscat($conditions = array()) {
+
+    public function getscat($conditions = array()) {
+
         $sql = "select * from SCAT d INNER JOIN tbl_employee_master e ON e.TM_Emp_Id = d.tm_id ";
 
         if (!empty($conditions)) {
             $sql.=" WHERE " . join(" AND ", $conditions);
         }
         
+
      
         $query = $this->db->query($sql);
         return $query->result();
     }
 
-     public function gettour($conditions = array()) {
+    
+
+    public function gettour($conditions = array()) {
+
         $sql = "select * from tour d INNER JOIN tbl_employee_master e ON e.TM_Emp_Id = d.tm_id ";
 
         if (!empty($conditions)) {
             $sql.=" WHERE " . join(" AND ", $conditions);
         }
         
+
      
         $query = $this->db->query($sql);
         return $query->result();
+
     }
 
     public function getEmployee($conditions = array()) {
@@ -184,6 +197,7 @@ class User_model extends CI_Model {
         $query = $this->db->query($sql);
         return $query->result();
     }
+
   
             public function dashboardStatus($ID) {
         $sql = "SELECT SUM(

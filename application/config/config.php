@@ -28,7 +28,11 @@ $config['base_url'] = 'http://'.$_SERVER['HTTP_HOST'].'/legacyMarathon';
 | variable so that it is blank.
 |
 */
+<<<<<<< HEAD
 $config['index_page'] = '';
+=======
+$config['index_page'] = 'index.php';
+>>>>>>> 0bf3d28995cded0526ded4ec246df12b1cebb6e2
 
 /*
 |--------------------------------------------------------------------------

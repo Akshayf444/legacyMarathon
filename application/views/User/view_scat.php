@@ -1,3 +1,4 @@
+
 <div class="row">
            <div class="col-xs-12 ">
         <div class="panel">
@@ -23,7 +24,9 @@
             <thead>
                 <tr>
                     <th>Sr.</th>
+
                     <th>Name of HQ</th>
+
                     <th>No of Attendee</th>
                     <th>RXS Of ASTHALIN MDI</th>
                     <th>POB Of ASTHALIN DP</th>
@@ -45,7 +48,9 @@
                     foreach ($show as $row) :
                         ?><tr>  
                             <td data-title="Sr"><?php echo $count++; ?></td>
+
                             <td data-title="Name of HQ"><?php echo $row->No_of_SCAT; ?></td>
+
                             <td data-title="No of Attendee"><?php echo $row->No_of_Attendee; ?></td>
                             <td data-title="POB Of ASTHALIN MDI"><?php echo $row->ASTHALIN_MDI; ?> </td> 
                             <td data-title="POB Of ASTHALIN DPI"><?php echo $row->ASTHALIN_DPI; ?></td>  

@@ -1,3 +1,4 @@
+    
 <?php if ($this->session->userdata('Designation') == 'TM') { ?>
     <div class="row">
         <div class="col-xs-3">
@@ -85,6 +86,3 @@
             <a href="<?php echo site_url('User/view_tour'); ?>" ><b>View Detail</b> <i class="fa fa-arrow-right"></i></a>
         </div>
     </div>
-
-
-

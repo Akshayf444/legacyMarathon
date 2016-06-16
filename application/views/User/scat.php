@@ -9,7 +9,11 @@ echo form_open('User/SCAT', $attribute);
 ?>
 <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
     <div class="form-group">
+
         <input type="text" class="form-control" value="" name="No_of_SCAT" placeholder="Name of HQ" />
+
+       
+
     </div>
     
     <div class="form-group">
