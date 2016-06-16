@@ -31,7 +31,6 @@ $config['base_url'] = 'http://'.$_SERVER['HTTP_HOST'].'/legacyMarathon';
 
 $config['index_page'] = 'index.php';
 
-
 /*
 |--------------------------------------------------------------------------
 | URI PROTOCOL
