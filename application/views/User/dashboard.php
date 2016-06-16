@@ -78,7 +78,7 @@
             <div class="col-xs-9" align="right">
                 <h2 style="margin-top: 0px"><b><?php  echo $dashboardstatus3->taxi; ?></b></h2>
                 <h4 style="margin-top: 0px">Total Tour Car</h4>   
-  <h2 style="margin-top: 0px"><b><?php  echo $dashboardstatu3->bike; ?></b></h2>
+  <h2 style="margin-top: 0px"><b><?php  echo $dashboardstatus3->bike; ?></b></h2>
                 <h4 style="margin-top: 0px">Total Tour Bike</h4> 
             </div><!-- /.info-box -->
         </div>

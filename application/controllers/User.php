@@ -88,7 +88,7 @@ class User extends MY_Controller {
         $data['dashboardstatus2'] = $this->User_model->dashboardStatus2($this->Emp_Id);
         $data['dashboardstatus3'] = $this->User_model->dashboardStatus3($this->Emp_Id);
 
-        $data = array('title' => 'Dashboard', 'content' => 'User/dashboard', 'view_data' => 'blank');
+        $data = array('title' => 'Dashboard', 'content' => 'User/dashboard', 'view_data' => $data);
         $this->load->view('template3', $data);
     }
 

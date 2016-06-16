@@ -62,7 +62,7 @@
                     <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
                         <span class="sr-only">Toggle navigation</span>
                     </a>
-<<<<<<< HEAD                   
+                  
 <!--                    <h6 style="text-align: center; font-size: 18px">Welcome to Legacy Marathon</h6>-->
                     
                     <!-- Navbar Right Menu -->
