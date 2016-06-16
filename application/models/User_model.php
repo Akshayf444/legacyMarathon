@@ -105,7 +105,7 @@ class User_model extends CI_Model {
             $sql.=" WHERE " . join(" AND ", $conditions);
         }
         
-       // echo $sql;
+      echo $sql;
         $query = $this->db->query($sql);
         return $query->result();
     }
@@ -116,16 +116,26 @@ class User_model extends CI_Model {
         return $query->result();
     }
 
-    public function getscat($tm_id) {
-        $sql = "select * from SCAT where tm_id ='$tm_id'and status='1'   ";
+    public function getscat($conditions = array()) {
+        $sql = "select * from SCAT d INNER JOIN tbl_employee_master e ON e.TM_Emp_Id = d.tm_id ";
+
+        if (!empty($conditions)) {
+            $sql.=" WHERE " . join(" AND ", $conditions);
+        }
+        
+      echo $sql;
         $query = $this->db->query($sql);
-        return $query->result();
     }
 
-    public function gettour($tm_id) {
-        $sql = "select * from tour where tm_id ='$tm_id'and status='1'   ";
+    public function gettour($conditions = array()) {
+        $sql = "select * from tour d INNER JOIN tbl_employee_master e ON e.TM_Emp_Id = d.tm_id ";
+
+        if (!empty($conditions)) {
+            $sql.=" WHERE " . join(" AND ", $conditions);
+        }
+        
+      echo $sql;
         $query = $this->db->query($sql);
-        return $query->result();
     }
 
     public function getEmployee($conditions = array()) {
