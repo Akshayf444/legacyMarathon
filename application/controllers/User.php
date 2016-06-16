@@ -64,7 +64,7 @@ class User extends MY_Controller {
                             $this->session->set_userdata('smswayid', $smexist['smsWayID']);
                             $this->session->set_userdata('Designation', 'SM');
 
-                            redirect('User/view_doctor', 'refresh');
+                            redirect('User/dashboard', 'refresh');
 
                         } else {
                             $this->session->set_userdata('message', $this->Master_Model->DisplayAlert('Incorrect Username/Password', 'danger'));
@@ -80,15 +80,13 @@ class User extends MY_Controller {
     }
 
     public function dashboard() {
-
-
         
         $data['dashboardstatus'] = $this->User_model->dashboardStatus($this->Emp_Id);
         $data['dashboardstatus1'] = $this->User_model->dashboardStatus1($this->Emp_Id);
         $data['dashboardstatus2'] = $this->User_model->dashboardStatus2($this->Emp_Id);
         $data['dashboardstatus3'] = $this->User_model->dashboardStatus3($this->Emp_Id);
 
-        $data = array('title' => 'Dashboard', 'content' => 'User/dashboard', 'view_data' => $data);
+        $data = array('title' => 'Dashboard', 'content' => 'User/dashboard','page_title'=>'Dashboard', 'view_data' => $data);
         $this->load->view('template3', $data);
     }
 

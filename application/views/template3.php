@@ -186,7 +186,7 @@
                 </section>
 
                 <!-- Main content -->
-                <section class="content" style="height: 775px;overflow: scroll">
+                <section class="content" >
                     <?php
                     echo $this->session->userdata('message') ? $this->session->userdata('message') : '';
                     $this->session->unset_userdata('message');
