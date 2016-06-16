@@ -200,7 +200,7 @@ class User_model extends CI_Model {
 
   
             public function dashboardStatus($ID) {
-        $sql = "SELECT SUM(
+        $sql = "SELECT count(
     doctor_id)  AS doctor "
                 . " FROM  tbl_employee_master em INNER JOIN doctor dm  ON dm.tm_id = em.TM_Emp_Id where dm.tm_id='$ID' AND dm.Status='1' ";
      
@@ -208,14 +208,14 @@ class User_model extends CI_Model {
         return $query->row();
     }
  public function dashboardStatus1($ID) {
-        $sql = "SELECT SUM(chemist_id) AS CHEMIST "
+        $sql = "SELECT count(chemist_id) AS CHEMIST "
                 . " FROM  tbl_employee_master em INNER JOIN chemist dm  ON dm.tm_id = em.TM_Emp_Id where dm.tm_id='$ID' AND dm.Status='1' ";
      
         $query = $this->db->query($sql);
         return $query->row();
     }
      public function dashboardStatus2($ID) {
-        $sql = "SELECT SUM(Scat_id) AS Scat "
+        $sql = "SELECT SUM(NO_of_SCAT) AS Scat "
                 . " FROM tbl_employee_master em INNER JOIN SCAT dm  ON dm.tm_id = em.TM_Emp_Id where dm.tm_id='$ID' AND dm.Status='1' ";
      
         $query = $this->db->query($sql);

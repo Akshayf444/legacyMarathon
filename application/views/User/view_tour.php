@@ -1,5 +1,5 @@
 <div class="row">
-<<<<<<< HEAD
+
     <div class="col-xs-12 ">
         <div class="panel">
             <?php
@@ -18,9 +18,7 @@
             </form>
         </div>
     </div>
-=======
-   
->>>>>>> 0bf3d28995cded0526ded4ec246df12b1cebb6e2
+
     <div class="col-lg-12 table-responsive" >
         <table class="table table-bordered table-hover panel" id="datatable">
             <thead>

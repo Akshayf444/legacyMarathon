@@ -306,6 +306,10 @@ class User extends MY_Controller {
         }
 
 
+        
+        $data = array('title' => 'Doctor List', 'content' => 'User/view_chemist', 'view_data' => $data, 'page_title' => ' Doctor List');
+        $this->load->view('template3', $data);
+        
 
     }
 
