@@ -32,7 +32,7 @@
                     <th>POBOf AEROCORT_MDI</th>
                     <th>Other</th>
 
-                    <th>Mobile No</th>
+  
 
                     <th>Name of Legendary Chemist Met</th>
 

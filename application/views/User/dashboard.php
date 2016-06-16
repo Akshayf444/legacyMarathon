@@ -5,13 +5,13 @@
              <a href="<?php echo site_url('User/addDoctor'); ?>" class="btn btn-warning">Add Doctor</a>
         </div>
         <div class="col-xs-3">
-               <a class="btn btn-info" href="<?php echo site_url('User/addchemist'); ?>" > Chemist </a>
+               <a class="btn btn-info" href="<?php echo site_url('User/addchemist'); ?>" > Add Chemist </a>
         </div>
         <div class="col-xs-3">
-           <a class="btn btn-success" href="<?php echo site_url('User/SCAT'); ?>" >   SCAT  </a>
+           <a class="btn btn-success" href="<?php echo site_url('User/SCAT'); ?>" >  Add SCAT  </a>
         </div>
         <div class="col-xs-3">
-            <a class="btn btn-primary"  href="<?php echo site_url('User/Taxi'); ?>" > Taxi</a>
+            <a class="btn btn-primary"  href="<?php echo site_url('User/Taxi'); ?>" >  Add Taxi</a>
 
                     
 
