@@ -6,26 +6,35 @@ echo form_open('User/update_doc?id=' . $row->doctor_id, $attribute);
 <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
     <div class="form-group"> 
          <input type="hidden" class="form-control" value="<?php echo $row->doctor_id?>" name="DoctorId"  />
+         <label>Doctor Name</label>
         <input type="text" class="form-control" value="<?php echo $row->Doctor_Name ;  ?>" name="Doctor_Name" placeholder="Doctor Name" />
     </div>
     <div class="form-group">
+        <label>Head Quarters</label>
         <input type="text" class="form-control" value="<?php echo $row->hq; ?>" name="hq" placeholder="Head Quarters" /> </div>
     <div class="form-group">
+        <label>Speciality</label>
         <input type="text" class="form-control" value="<?php echo $row->spl ?>" name="spl" placeholder="Speciality"/> </div>
     <div class="form-group">
+        <label>RXS Of ASTHALIN_MDI</label>
         <input type="number" class="form-control" value="<?php echo $row->ASTHALIN_MDI ?>" name="ASTHALIN_MDI" placeholder="RXS Of ASTHALIN_MDI" /> </div>
     <div class="form-group">
+        <label>RXS Of ASTHALIN_DPI</label>
         <input type="text" class="form-control" value="<?php echo $row->ASTHALIN_DPI ?>" name="ASTHALIN_DPI" placeholder="RXS Of ASTHALIN_DPI"/> </div>
     <div class="form-group">
+        <label>RXS Of AEROCORT_FORTE_ROTACAPS</label>
         <input type="text"  class="form-control" name="AEROCORT_FORTE_ROTACAPS" value="<?php echo $row->AEROCORT_FORTE_ROTACAPS ?>" placeholder="RXS Of AEROCORT_FORTE_ROTACAPS" >
     </div>	    
     <div class="form-group">
+        <label>RXS Of AEROCORT_ROTACAPS</label>
         <input type="text"  class="form-control" name="AEROCORT_ROTACAPS" value="<?php echo $row->AEROCORT_ROTACAPS ?>"required="" placeholder="RXS Of AEROCORT_ROTACAPS" >
     </div>	
     <div class="form-group">
+        <label>RXS Of AEROCORT_MDI</label>
         <input type="text"  class="form-control" name="AEROCORT_MDI" value="<?php echo $row->AEROCORT_MDI; ?>" placeholder="RXS Of AEROCORT_MDI" >
     </div>	
     <div class="form-group">
+        <label>RXS Of Other</label>
         <input type="text"  class="form-control" name="Other" value="<?php echo $row->Other; ?>" placeholder=" RXS Of Other" >
     </div>	
     
