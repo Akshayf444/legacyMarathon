@@ -7,6 +7,7 @@
 $attribute = array('id' => 'valid');
 echo form_open('User/addDoctor', $attribute);
 ?>
+<div class="row">
 <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
     <div class="form-group">
         <input type="text" class="form-control" value="" name="Doctor_Name" placeholder="Doctor Name" />
@@ -39,6 +40,7 @@ echo form_open('User/addDoctor', $attribute);
     </div>
     <button class="btn btn-block btn-success " type="submit">Save</button>
 </div>
+    </div>
 </form>
 
 

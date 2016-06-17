@@ -1,22 +1,22 @@
+<style>
+        
+    .leftpad{
+        padding-left: 0;
+    }
+</style>
 <?php
 $attribute = array('id' => 'valid');
 echo form_open('User/update_chemist?id=' . $row->chemist_id, $attribute);
 ?>
+<div class="row">
 <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
 
-      <input type="hidden" class="form-control" value="<?php echo $row->id?>" name="chemist_id"  />
-       <input type="hidden" class="form-control" value="<?php echo $row->data_id?>" name="chemist_id1"  />
-
-      <input type="hidden" class="form-control" value="<?php echo $row->chemist_id?>" name="chemist_id"  />
-
-        
-<div class="form-group">
-        <input type="text" class="form-control" value="<?php echo $row->No_of_Chemist_Met?>" name="No_of_Chemist_Met" placeholder="No Of Chemist Met" />
+    <input type="hidden" class="form-control" value="<?php echo $row->id ?>" name="chemist_id"  />
+    <input type="hidden" class="form-control" value="<?php echo $row->data_id ?>" name="chemist_id1"  />
+    <input type="hidden" class="form-control" value="<?php echo $row->chemist_id ?>" name="chemist_id"  />
+    <div class="form-group">
+        <input type="text" class="form-control" value="<?php echo $row->No_of_Chemist_Met ?>" name="No_of_Chemist_Met" placeholder="No Of Chemist Met" />
     </div>
-
-
-    
-       
     <div class="form-group">
         <input type="number" class="form-control" value="<?php echo $row->ASTHALIN_MDI ?>" name="ASTHALIN_MDI" placeholder="RXS Of ASTHALIN_MDI" /> </div>
     <div class="form-group">
@@ -33,59 +33,62 @@ echo form_open('User/update_chemist?id=' . $row->chemist_id, $attribute);
     <div class="form-group">
         <input type="text"  class="form-control" name="Other" value="<?php echo $row->Other; ?>" placeholder=" RXS Of Other" >
     </div>	
-
     <div class="row">
         <div class="form-group">
-            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
+            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-7">
                 <input type="text" class="form-control" value="<?php echo $row->Legendary_Chemist_Met; ?>" name="Legendary_Chemist_Met" placeholder="Name of Legendary Chemist Met"/> 
             </div>  
-            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
+            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-5 leftpad">
                 <input type="number" class="form-control" value="<?php echo $row->Mobile_no; ?>" name="Mobile_no" placeholder="Mobile No" /> 
             </div>
-        </div> </div> <br>
-        <div class="row">
-            <div class="form-group">
-            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
+        </div>
+    </div> <br>
+    <div class="row">
+        <div class="form-group">
+            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-7">
                 <input type="text" class="form-control" value="<?php echo $row->Legendary_Chemist_Met1; ?>" name="Legendary_Chemist_Met1" placeholder="Name of Legendary Chemist Met"/> 
             </div>
-             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
-                 <input type="number" class="form-control" value="<?php echo $row->Mobile_no1; ?>" name="Mobile_no1" placeholder="Mobile No" /> 
-             </div>
-            </div> 
-        </div> <br>
-            <div class="row"> 
-                <div class="form-group">
-                <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6"> 
-                    <input type="text" class="form-control" value="<?php echo $row->Legendary_Chemist_Met2; ?>" name="Legendary_Chemist_Met2" placeholder="Name of Legendary Chemist Met"/> 
-                </div>
-             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
-                 <input type="number" class="form-control" value="<?php echo $row->Mobile_no2; ?>" name="Mobile_no2" placeholder="Mobile No" /> 
-             </div>
-                </div> </div> <br>
-                <div class="row">
-                    <div class="form-group">
-                    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
-                        <input type="text" class="form-control" value="<?php echo $row->Legendary_Chemist_Met3; ?>" name="Legendary_Chemist_Met3" placeholder="Name of Legendary Chemist Met"/> 
-                    </div>
-             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
-                 <input type="number" class="form-control" value="<?php echo $row->Mobile_no3; ?>" name="Mobile_no3" placeholder="Mobile No" />
-             </div>
-                </div> 
-                </div> <br>
-        <div class="row">
-            <div class="form-group">
-            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
+            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-5 leftpad">
+                <input type="number" class="form-control" value="<?php echo $row->Mobile_no1; ?>" name="Mobile_no1" placeholder="Mobile No" /> 
+            </div>
+        </div> 
+    </div> <br>
+    <div class="row"> 
+        <div class="form-group">
+            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-7"> 
+                <input type="text" class="form-control" value="<?php echo $row->Legendary_Chemist_Met2; ?>" name="Legendary_Chemist_Met2" placeholder="Name of Legendary Chemist Met"/> 
+            </div>
+            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-5 leftpad">
+                <input type="number" class="form-control" value="<?php echo $row->Mobile_no2; ?>" name="Mobile_no2" placeholder="Mobile No" /> 
+            </div>
+        </div>
+    </div> <br>
+    <div class="row">
+        <div class="form-group">
+            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-7">
+                <input type="text" class="form-control" value="<?php echo $row->Legendary_Chemist_Met3; ?>" name="Legendary_Chemist_Met3" placeholder="Name of Legendary Chemist Met"/> 
+            </div>
+            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-5 leftpad">
+                <input type="number" class="form-control" value="<?php echo $row->Mobile_no3; ?>" name="Mobile_no3" placeholder="Mobile No" />
+            </div>
+        </div> 
+    </div> <br>
+    <div class="row">
+        <div class="form-group">
+            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-7">
                 <input type="text" class="form-control" value="<?php echo $row->Legendary_Chemist_Met4; ?>" name="Legendary_Chemist_Met4" placeholder="Name of Legendary Chemist Met"/>
             </div>
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
-            <input type="number" class="form-control" value="<?php echo $row->Mobile_no4; ?>" name="Mobile_no4" placeholder="Mobile No" />
+            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-5 leftpad">
+                <input type="number" class="form-control" value="<?php echo $row->Mobile_no4; ?>" name="Mobile_no4" placeholder="Mobile No" />
+            </div>
         </div>
-            </div></div>
-     <br>
+    </div>
+    <br>
 
-    
+
     <button class="btn btn-block btn-success " type="submit">Update</button>
 </div>
+    </div>
 </form>
 
 

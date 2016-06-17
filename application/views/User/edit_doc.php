@@ -2,7 +2,7 @@
 $attribute = array('id' => 'valid');
 echo form_open('User/update_doc?id=' . $row->doctor_id, $attribute);
 ?>
-
+<div class="row">
 <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
     <div class="form-group"> 
          <input type="hidden" class="form-control" value="<?php echo $row->doctor_id?>" name="DoctorId"  />
@@ -40,6 +40,7 @@ echo form_open('User/update_doc?id=' . $row->doctor_id, $attribute);
     </div>
     <button class="btn btn-block btn-success " type="submit">Update</button>
 </div>
+    </div>
 </form>
 
 

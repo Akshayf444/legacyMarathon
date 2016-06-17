@@ -7,6 +7,7 @@
 $attribute = array('id' => 'valid');
 echo form_open('User/SCAT', $attribute);
 ?>
+<div class="row">
 <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
     <div class="form-group">
 
@@ -43,6 +44,7 @@ echo form_open('User/SCAT', $attribute);
     
     <button class="btn btn-block btn-success " type="submit">Save</button>
 </div>
+    </div>
 </form>
 
 

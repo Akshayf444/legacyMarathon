@@ -1,20 +1,19 @@
 <div class="row">
-
     <div class="col-xs-12 ">
         <div class="panel">
             <?php
             $attributes = array('method' => 'GET');
             echo form_open('User/view_tour', $attributes);
             ?>
-            <?php if ($this->session->userdata('Designation') == 'BM' || $this->session->userdata('Designation') == 'SM' ) { ?>
-            <?php echo isset($bmlist) ? $bmlist : ''; ?>
+            <?php if ($this->session->userdata('Designation') == 'BM' || $this->session->userdata('Designation') == 'SM') { ?>
+                <?php echo isset($bmlist) ? $bmlist : ''; ?>
                 <?php echo isset($tmlist) ? $tmlist : ''; ?>
-                
+
                 <button type="submit" class="btn btn-primary">Fetch</button>
                 <?php
             }
             ?>
-            <a download="Doctor<?php echo date('dM g-i-a');?>.xls" class="btn btn-success pull" href="#" onclick="return ExcellentExport.excel(this, 'datatable', 'Sheeting');"><i class="fa fa-arrow-circle-o-right"></i> Export</a>
+            <a download="Doctor<?php echo date('dM g-i-a'); ?>.xls" class="btn btn-success pull" href="#" onclick="return ExcellentExport.excel(this, 'datatable', 'Sheeting');"><i class="fa fa-arrow-circle-o-right"></i> Export</a>
             </form>
         </div>
     </div>
@@ -36,11 +35,11 @@
                     <th>POB Of AEROCORT ROTACAPS</th>
                     <th>POB Of AEROCORT_MDI</th>
                     <th>Other</th>
-                    
-                    
-                    <?php if ($this->session->userdata('Designation') == 'TM'  ) { ?>
-                    <th>Action</th> <?php } ?>
-                 
+
+
+                    <?php if ($this->session->userdata('Designation') == 'TM') { ?>
+                        <th>Action</th> <?php } ?>
+
                 </tr>
             </thead>
             <tbody>
@@ -53,7 +52,7 @@
                             <td data-title="No of Taxi Tour"><?php echo $row->Taxi_Tour; ?></td>
                             <td data-title="Location"><?php echo $row->Location_taxi; ?></td>
                             <td data-title="Chemist Count"><?php echo $row->chemist_taxi; ?></td>  
-                             <td data-title="No of Taxi Tour"><?php echo $row->bike_tour; ?></td>
+                            <td data-title="No of Taxi Tour"><?php echo $row->bike_tour; ?></td>
                             <td data-title="Location"><?php echo $row->Location_bike; ?></td>
                             <td data-title="Chemist Count"><?php echo $row->chemist_bike; ?></td>
                             <td data-title="POB Of ASTHALIN MDI"><?php echo $row->ASTHALIN_MDI; ?> </td> 
@@ -62,27 +61,27 @@
                             <td data-title="POB Of AEROCORT ROTACAPS"><?php echo $row->AEROCORT_ROTACAPS; ?></td> 
                             <td data-title="POB Of AEROCORT MDI"><?php echo $row->AEROCORT_MDI; ?></td>
                             <td data-title="Other"><?php echo $row->Other; ?></td>  
-                            
-                            
 
 
-                 <td>  
-                      <?php if ($this->session->userdata('Designation') == 'TM'  ) { ?>
-                            <a class="fa fa-trash-o btn-danger btn-xs" class=""  onclick="deletedoc('<?php echo site_url('User/tour_del?id=') . $row->tour_id; ?>')"></a> 
-                        <a class="fa fa-pencil btn-success btn-xs" onclick="window.location = '<?php echo site_url('User/update_tour?id=') . $row->tour_id; ?>';"></a>                               
-<?php }?>
-                        </td>
 
-                    </tr>
-                    <?php
-                endforeach;
-            }
-            ?>
-        </tbody>
-    </table>
-</div>
 
-                     
+                            <td>  
+                                <?php if ($this->session->userdata('Designation') == 'TM') { ?>
+                                    <a class="fa fa-trash-o btn-danger btn-xs" class=""  onclick="deletedoc('<?php echo site_url('User/tour_del?id=') . $row->tour_id; ?>')"></a> 
+                                    <a class="fa fa-pencil btn-success btn-xs" onclick="window.location = '<?php echo site_url('User/update_tour?id=') . $row->tour_id; ?>';"></a>                               
+                                <?php } ?>
+                            </td>
+
+                        </tr>
+                        <?php
+                    endforeach;
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
+
+
 
 </div>
 <script>

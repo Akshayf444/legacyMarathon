@@ -1,16 +1,18 @@
+<style>
+    .btn{
+        padding: 6px 3px;
+    }
+</style>
 <?php if ($this->session->userdata('Designation') == 'TM') { ?>
     <div class="row">
-        <div class="col-xs-3">
-            <a href="<?php echo site_url('User/addDoctor'); ?>" class="btn btn-warning">Add Doctor</a>
-        </div>
-        <div class="col-xs-3">
+        <div class="col-xs-12">
+            <a href="<?php echo site_url('User/addDoctor'); ?>" class="btn btn-warning ">Add Doctor</a>
+    
             <a class="btn btn-info" href="<?php echo site_url('User/addchemist'); ?>" >Add Chemist</a>
-        </div>
-        <div class="col-xs-3">
-            <a class="btn btn-success" href="<?php echo site_url('User/SCAT'); ?>" >Add SCAT</a>
-        </div>
-        <div class="col-xs-3">
-            <a class="btn btn-primary"  href="<?php echo site_url('User/Taxi'); ?>" >Add Tour</a>
+       
+            <a style="margin-left: 3px" class="btn btn-success pull-right" href="<?php echo site_url('User/SCAT'); ?>" >Add SCAT</a>
+        
+            <a class="btn btn-primary pull-right"  href="<?php echo site_url('User/Taxi'); ?>" >Add Tour</a>
         </div>
     </div>
 <?php } ?>

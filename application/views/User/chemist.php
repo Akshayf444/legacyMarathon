@@ -2,99 +2,93 @@
     .content-wrapper{
         min-height: 775px;
     }    
+    
+    .leftpad{
+        padding-left: 0;
+    }
 </style>
 <?php
 $attribute = array('id' => 'valid');
 echo form_open('User/addchemist', $attribute);
 ?>
-<div class="col-lg-16 col-sm-16 col-md-16 col-xs-16">
-    <div class="form-group">
-        <input type="text" class="form-control" value="" name="No_of_Chemist_Met" placeholder="No Of Chemist Met" />
-    </div>
-
-
-
-
-    <div class="form-group">
-        <input type="number" class="form-control" value="" name="ASTHALIN_MDI" placeholder=" POB Of ASTHALIN_MDI" /> </div>
-    <div class="form-group">
-        <input type="text" class="form-control" value="" name="ASTHALIN_DPI" placeholder="POB Of ASTHALIN_DPI"/> </div>
-    <div class="form-group">
-        <input type="text"  class="form-control" name="AEROCORT_FORTE_ROTACAPS" placeholder="POB Of AEROCORT_FORTE_ROTACAPS" >
-    </div>	    
-    <div class="form-group">
-        <input type="text"  class="form-control" name="AEROCORT_ROTACAPS" required="" placeholder="POB Of AEROCORT_ROTACAPS" >
-    </div>	
-    <div class="form-group">
-        <input type="text"  class="form-control" name="AEROCORT_MDI" placeholder=" POB Of AEROCORT_MDI" >
-    </div>	
-    <div class="form-group">
-        <input type="text"  class="form-control" name="Other" placeholder="POB Of Other" >
-    </div>	
-    <div class="row">
+<div class="row">
+    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
         <div class="form-group">
-            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
-
-                <input type="text" class="form-control" value="" name="Legendary_Chemist_Met" placeholder="Name of Legendary Chemist Met"/> 
-            </div>  
-            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
-                <input type="number" class="form-control" value="" name="Mobile_no" placeholder="Mobile No" /> 
-
-            </div>
-        </div> </div> <br>
+            <input type="text" class="form-control" value="" name="No_of_Chemist_Met" placeholder="No Of Chemist Met" />
+        </div>
+        <div class="form-group">
+            <input type="number" class="form-control" value="" name="ASTHALIN_MDI" placeholder=" POB Of ASTHALIN_MDI" /> </div>
+        <div class="form-group">
+            <input type="text" class="form-control" value="" name="ASTHALIN_DPI" placeholder="POB Of ASTHALIN_DPI"/> </div>
+        <div class="form-group">
+            <input type="text"  class="form-control" name="AEROCORT_FORTE_ROTACAPS" placeholder="POB Of AEROCORT_FORTE_ROTACAPS" >
+        </div>	    
+        <div class="form-group">
+            <input type="text"  class="form-control" name="AEROCORT_ROTACAPS" required="" placeholder="POB Of AEROCORT_ROTACAPS" >
+        </div>	
+        <div class="form-group">
+            <input type="text"  class="form-control" name="AEROCORT_MDI" placeholder=" POB Of AEROCORT_MDI" >
+        </div>	
+        <div class="form-group">
+            <input type="text"  class="form-control" name="Other" placeholder="POB Of Other" >
+        </div>	
         <div class="row">
             <div class="form-group">
-            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
+                <div class="col-lg-8 col-sm-8 col-md-8 col-xs-7">
 
-                <input type="text" class="form-control" value="" name="Legendary_Chemist_Met1" placeholder="Name of Legendary Chemist Met"/> 
+                    <input type="text" class="form-control" value="" name="Legendary_Chemist_Met" placeholder="Name of Chemist Met"/> 
+                </div>  
+                <div class="col-lg-4 col-sm-4 col-md-4 col-xs-5 leftpad">
+                    <input type="number" class="form-control" value="" name="Mobile_no" placeholder="Mobile No" /> 
+
+                </div>
+            </div> </div> <br>
+        <div class="row">
+            <div class="form-group">
+                <div class="col-lg-6 col-sm-6 col-md-6 col-xs-7">
+                    <input type="text" class="form-control" value="" name="Legendary_Chemist_Met1" placeholder="Name of Chemist Met"/> 
+                </div>
+                <div class="col-lg-6 col-sm-6 col-md-6 col-xs-5 leftpad">
+                    <input type="number" class="form-control" value="" name="Mobile_no1" placeholder="Mobile No" /> 
+
+                </div> 
             </div>
-             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
-                 <input type="number" class="form-control" value="" name="Mobile_no1" placeholder="Mobile No" /> 
-
+        </div><br>
+        <div class="row"> 
+            <div class="form-group">
+                <div class="col-lg-6 col-sm-6 col-md-6 col-xs-7"> 
+                    <input type="text" class="form-control" value="" name="Legendary_Chemist_Met2" placeholder="Name of Chemist Met"/> 
+                </div>
+                <div class="col-lg-6 col-sm-6 col-md-6 col-xs-5 leftpad">
+                    <input type="number" class="form-control" value="" name="Mobile_no2" placeholder="Mobile No" /> 
+                </div> 
+            </div>
+        </div> <br>
+        <div class="row">
+            <div class="form-group">
+                <div class="col-lg-6 col-sm-6 col-md-6 col-xs-7">
+                    <input type="text" class="form-control" value="" name="Legendary_Chemist_Met3" placeholder="Name of Chemist Met"/> 
+                </div>
+                <div class="col-lg-6 col-sm-6 col-md-6 col-xs-5 leftpad">
+                    <input type="number" class="form-control" value="" name="Mobile_no3" placeholder="Mobile No" />
+                </div>
             </div> 
         </div> <br>
-            <div class="row"> 
-                <div class="form-group">
-                <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6"> 
-
-                    <input type="text" class="form-control" value="" name="Legendary_Chemist_Met2" placeholder="Name of Legendary Chemist Met"/> 
-                </div>
-             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
-                 <input type="number" class="form-control" value="" name="Mobile_no2" placeholder="Mobile No" /> 
-=
-             </div> </div></div> <br>
-                <div class="row">
-                    <div class="form-group">
-                    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
-
-                        <input type="text" class="form-control" value="" name="Legendary_Chemist_Met3" placeholder="Name of Legendary Chemist Met"/> 
-                    </div>
-             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
-                 <input type="number" class="form-control" value="" name="Mobile_no3" placeholder="Mobile No" />
-
-                        
-                    </div>
-             
-                </div> 
-                </div> <br>
         <div class="row">
             <div class="form-group">
-            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
-
-                <input type="text" class="form-control" value="" name="Legendary_Chemist_Met4" placeholder="Name of Legendary Chemist Met"/>
+                <div class="col-lg-6 col-sm-6 col-md-6 col-xs-7">
+                    <input type="text" class="form-control" value="" name="Legendary_Chemist_Met4" placeholder="Name of Chemist Met"/>
+                </div>
+                <div class="col-lg-6 col-sm-6 col-md-6 col-xs-5 leftpad">
+                    <input type="number" class="form-control" value="" name="Mobile_no4" placeholder="Mobile No" />
+                </div>
             </div>
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
-            <input type="number" class="form-control" value="" name="Mobile_no4" placeholder="Mobile No" />
+        </div> <br>
 
-            </div></div>
-    </div> <br>
-    
-    <div class="form-group">
-        
-
-
-    <button class="btn btn-block btn-success " type="submit">Save</button>
-</div>
+        <div class="form-group">
+            <button class="btn btn-block btn-success " type="submit">Save</button>
+        </div>
+    </div>
 </form>
 
 
@@ -132,4 +126,5 @@ echo form_open('User/addchemist', $attribute);
         });
     });
 </script>
+
 

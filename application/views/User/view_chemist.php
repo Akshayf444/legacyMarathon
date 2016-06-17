@@ -59,11 +59,11 @@
                             <td data-title="Other"><?php echo $row->Other; ?></td>  
 
                          
-                            <td data-title="Name of Legendary Chemist Met"><?php echo $row->Legendary_Chemist_Met?>[<?php echo $row->Mobile_no; ?> ] &nbsp; 
-                            <?php echo $row->Legendary_Chemist_Met1?>[<?php echo $row->Mobile_no1; ?> ] &nbsp;
-                            <?php echo $row->Legendary_Chemist_Met2?>[<?php echo $row->Mobile_no2; ?> ] &nbsp;
-                            <?php echo $row->Legendary_Chemist_Met3?>[<?php echo $row->Mobile_no3; ?> ] &nbsp;
-                            <?php echo $row->Legendary_Chemist_Met4?>[<?php echo $row->Mobile_no4; ?> ] &nbsp;
+                            <td data-title="Name of Legendary Chemist Met"><?php echo $row->Legendary_Chemist_Met?><?php echo $row->Mobile_no != '' ? '['.$row->Mobile_no.']' : ''; ?>  &nbsp; 
+                            <?php echo $row->Legendary_Chemist_Met1?><?php echo $row->Mobile_no1 != '' ?  '['.$row->Mobile_no1.']' : ''; ?>  &nbsp;
+                            <?php echo $row->Legendary_Chemist_Met2?><?php echo $row->Mobile_no2 != '' ?  '['.$row->Mobile_no2.']' : ''; ?>  &nbsp;
+                            <?php echo $row->Legendary_Chemist_Met3?><?php echo $row->Mobile_no3 != '' ?  '['.$row->Mobile_no3.']' : ''; ?>  &nbsp;
+                            <?php echo $row->Legendary_Chemist_Met4?><?php echo $row->Mobile_no4 != '' ?  '['.$row->Mobile_no4.']' : ''; ?>  &nbsp;
                             
                             
                             
