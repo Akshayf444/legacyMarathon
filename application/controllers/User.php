@@ -301,7 +301,6 @@ class User extends MY_Controller {
 
     public function view_scat() {
 
-        $conditions = array();
         $conditions = array(
             'Status = 1'
         );
@@ -344,7 +343,6 @@ class User extends MY_Controller {
 
     public function view_tour() {
 
-        $conditions = array();
         $conditions = array(
             'Status = 1'
         );
@@ -394,10 +392,7 @@ class User extends MY_Controller {
         $id = $_GET['id'];
         $data = array('status' => 0);
         $this->User_model->del_chemist($id, $data);
-
         $this->User_model->del_chemistdata($id, $data);
-
-
         redirect('User/view_chemist', 'refresh');
     }
 
@@ -482,7 +477,7 @@ class User extends MY_Controller {
             redirect('User/view_doctor', 'refresh');
         }
 
-        $data = array('title' => 'Upadte Doctor', 'content' => 'User/edit_doc', 'page_title' => 'Update Doctor', 'view_data' => $data);
+        $data = array('title' => 'Update Doctor', 'content' => 'User/edit_doc', 'page_title' => 'Update Doctor', 'view_data' => $data);
         $this->load->view('template3', $data);
     }
 
@@ -520,7 +515,7 @@ class User extends MY_Controller {
             redirect('User/view_chemist', 'refresh');
         }
 
-        $data = array('title' => 'Upadte Chemist', 'content' => 'User/edit_chemist', 'page_title' => 'Update Chemist', 'view_data' => $data);
+        $data = array('title' => 'Update Chemist', 'content' => 'User/edit_chemist', 'page_title' => 'Update Chemist', 'view_data' => $data);
         $this->load->view('template3', $data);
     }
 
@@ -545,7 +540,7 @@ class User extends MY_Controller {
             redirect('User/view_scat', 'refresh');
         }
 
-        $data = array('title' => 'Upadte SCAT', 'content' => 'User/edit_scat', 'page_title' => 'Update SCAT', 'view_data' => $data);
+        $data = array('title' => 'Update SCAT', 'content' => 'User/edit_scat', 'page_title' => 'Update SCAT', 'view_data' => $data);
         $this->load->view('template3', $data);
     }
 

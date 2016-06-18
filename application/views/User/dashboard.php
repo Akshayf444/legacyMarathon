@@ -12,7 +12,7 @@
        
             <a style="margin-left: 3px" class="btn btn-success pull-right" href="<?php echo site_url('User/SCAT'); ?>" >Add SCAT</a>
         
-            <a class="btn btn-primary pull-right"  href="<?php echo site_url('User/Taxi'); ?>" >Add Tour</a>
+            <a class="btn btn-primary pull-right"  href="<?php echo site_url('User/tour'); ?>" >Add Tour</a>
         </div>
     </div>
 <?php } ?>

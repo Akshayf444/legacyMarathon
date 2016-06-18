@@ -11,31 +11,31 @@ echo form_open('User/SCAT', $attribute);
     <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
         <div class="form-group">
             <label>No of SCAT</label>
-            <input type="text" class="form-control" value="" name="No_of_SCAT" placeholder="Name of SCAT" />       </div>
+            <input type="number" class="form-control" value="" name="No_of_SCAT" placeholder="No of SCAT" />       </div>
         <div class="form-group">
             <label>No of Attendee</label>
-            <input type="text" class="form-control" value="" name="No_of_Attendee" placeholder="No of Attendee"/> </div>
+            <input type="number" class="form-control" value="" name="No_of_Attendee" placeholder="No of Attendee"/> </div>
         <div class="form-group">
             <label>POB Of ASTHALIN MDI</label>
-            <input type="number" class="form-control" value="" name="ASTHALIN_MDI" placeholder="POB Of ASTHALIN MDI" /> </div>
+            <input type="number" class="form-control" value="" step="any"  min="0" name="ASTHALIN_MDI" placeholder="POB Of ASTHALIN MDI" /> </div>
         <div class="form-group">
             <label>POB Of ASTHALIN DPI</label>
-            <input type="text" class="form-control" value="" name="ASTHALIN_DPI" placeholder=" POB Of ASTHALIN DPI"/> </div>
+            <input type="number" class="form-control" value="" step="any"  min="0"  name="ASTHALIN_DPI" placeholder=" POB Of ASTHALIN DPI"/> </div>
         <div class="form-group">
             <label>POB Of AEROCORT FORTE ROTACAPS</label>
-            <input type="text"  class="form-control" name="AEROCORT_FORTE_ROTACAPS" placeholder="POB Of AEROCORT FORTE ROTACAPS" >
+            <input type="number"  class="form-control" step="any"  min="0"  name="AEROCORT_FORTE_ROTACAPS" placeholder="POB Of AEROCORT FORTE ROTACAPS" >
         </div>	    
         <div class="form-group">
             <label>POB Of AEROCORT ROTACAPS</label>
-            <input type="text"  class="form-control" name="AEROCORT_ROTACAPS" required="" placeholder="POB Of AEROCORT ROTACAPS" >
+            <input type="number"  class="form-control" step="any"  min="0"  name="AEROCORT_ROTACAPS" required="" placeholder="POB Of AEROCORT ROTACAPS" >
         </div>	
         <div class="form-group">
             <label>POB Of AEROCORT MDI</label>
-            <input type="text"  class="form-control" name="AEROCORT_MDI" placeholder="POB Of AEROCORT MDI" >
+            <input type="number"  class="form-control" step="any"  min="0"  name="AEROCORT_MDI" placeholder="POB Of AEROCORT MDI" >
         </div>	
         <div class="form-group">
             <label>POB Of Other</label>
-            <input type="text"  class="form-control" name="Other" placeholder="POB Of Other" >
+            <input type="number"  class="form-control" step="any"  min="0"  name="Other" placeholder="POB Of Other" >
         </div>	
         <button class="btn btn-block btn-success " type="submit">Save</button>
     </div>
