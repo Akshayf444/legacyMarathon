@@ -5,10 +5,12 @@
             $attributes = array('method' => 'GET');
             echo form_open('User/view_tour', $attributes);
             ?>
-            <?php if ($this->session->userdata('Designation') == 'BM' || $this->session->userdata('Designation') == 'SM') { ?>
+            <?php if ($this->session->userdata('Designation') == 'BM' || $this->session->userdata('Designation') == 'SM'|| strtoupper($this->session->userdata('Designation')) == 'ADMIN' ) { ?>
+                <?php echo isset($smlist) ? $smlist : ''; ?>
                 <?php echo isset($bmlist) ? $bmlist : ''; ?>
                 <?php echo isset($tmlist) ? $tmlist : ''; ?>
-
+                <?php echo isset($zone) ? $zone : ''; ?>
+                <?php echo isset($region) ? $region : ''; ?>
                 <button type="submit" class="btn btn-primary">Fetch</button>
                 <?php
             }

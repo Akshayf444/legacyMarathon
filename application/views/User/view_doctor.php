@@ -1,23 +1,27 @@
 <div class="row">
-       <div class="col-xs-12 ">
+    <div class="col-xs-12 ">
         <div class="panel">
             <?php
             $attributes = array('method' => 'GET');
             echo form_open('User/view_doctor', $attributes);
             ?>
-            <?php if ($this->session->userdata('Designation') == 'BM' || $this->session->userdata('Designation') == 'SM' ) { ?>
-            <?php echo isset($bmlist) ? $bmlist : ''; ?>
+            <?php if ($this->session->userdata('Designation') == 'BM'
+                    || $this->session->userdata('Designation') == 'SM' 
+                    || $this->session->userdata('Designation') == 'ADMIN') { ?>
+                <?php echo isset($smlist) ? $smlist : ''; ?>
+                <?php echo isset($bmlist) ? $bmlist : ''; ?>
                 <?php echo isset($tmlist) ? $tmlist : ''; ?>
-                
+                <?php echo isset($zone) ? $zone : ''; ?>
+                <?php echo isset($region) ? $region : ''; ?>
                 <button type="submit" class="btn btn-primary">Fetch</button>
                 <?php
             }
             ?>
-            <a download="Doctor<?php echo date('dM g-i-a');?>.xls" class="btn btn-success pull" href="#" onclick="return ExcellentExport.excel(this, 'datatable', 'Sheeting');"><i class="fa fa-arrow-circle-o-right"></i> Export</a>
+            <a download="Doctor<?php echo date('dM g-i-a'); ?>.xls" class="btn btn-success pull" href="#" onclick="return ExcellentExport.excel(this, 'datatable', 'Sheeting');"><i class="fa fa-arrow-circle-o-right"></i> Export</a>
             </form>
         </div>
     </div>
-        <div class="col-lg-12 table-responsive" >
+    <div class="col-lg-12 table-responsive" >
         <table class="table table-bordered table-hover panel" id="datatable">
             <thead>
                 <tr>
@@ -32,10 +36,10 @@
                     <th>RXS Of AEROCORT_MDI</th>
                     <th>Other</th>
                     <th>Part Of Fun</th> 
-                    
-                    <?php if ($this->session->userdata('Designation') == 'TM'  ) { ?>
-                    <th>Action</th> <?php } ?>
-                 
+
+                    <?php if ($this->session->userdata('Designation') == 'TM') { ?>
+                        <th>Action</th> <?php } ?>
+
                 </tr>
             </thead>
             <tbody>
@@ -55,26 +59,26 @@
                             <td data-title="RXS Of AEROCORT MDI"><?php echo $row->AEROCORT_MDI; ?></td>
                             <td data-title="Other"><?php echo $row->Other; ?></td>  
                             <td data-title="Part Of Fun"><?php echo $row->part_of_fun; ?></td>
-                            
 
 
-                 <td>  
-                      <?php if ($this->session->userdata('Designation') == 'TM'  ) { ?>
-                            <a class="fa fa-trash-o btn-danger btn-xs" class=""  onclick="deletedoc('<?php echo site_url('User/youngdoc_del?id=') . $row->doctor_id; ?>')"></a> 
-                        <a class="fa fa-pencil btn-success btn-xs" onclick="window.location = '<?php echo site_url('User/update_doc?id=') . $row->doctor_id; ?>';"></a>                               
-<?php }?>
-                        </td>
 
-                    </tr>
-                    <?php
-                endforeach;
-            }
-            ?>
-        </tbody>
-    </table>
-</div>
+                            <td>  
+                                <?php if ($this->session->userdata('Designation') == 'TM') { ?>
+                                    <a class="fa fa-trash-o btn-danger btn-xs" class=""  onclick="deletedoc('<?php echo site_url('User/youngdoc_del?id=') . $row->doctor_id; ?>')"></a> 
+                                    <a class="fa fa-pencil btn-success btn-xs" onclick="window.location = '<?php echo site_url('User/update_doc?id=') . $row->doctor_id; ?>';"></a>                               
+                                <?php } ?>
+                            </td>
 
-                     
+                        </tr>
+                        <?php
+                    endforeach;
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
+
+
 
 </div>
 <script>

@@ -68,7 +68,7 @@ class User extends MY_Controller {
                             $adminexist = $this->User_model->adminauthentication($username, $password);
                             if (!empty($adminexist)) {
                                 $this->session->set_userdata('Emp_Id', $adminexist['admin_id']);
-                                $this->session->set_userdata('Full_Name', $smexist['name']);
+                                $this->session->set_userdata('Full_Name', $adminexist['name']);
                                 $this->session->set_userdata('Designation', 'ADMIN');
                                 redirect('User/dashboard', 'refresh');
                             } else {
@@ -85,11 +85,10 @@ class User extends MY_Controller {
         $this->load->view('template1', $data);
     }
 
-
-    public function dashboard() {       
+    public function dashboard() {
 
         $condition = array('d.Status = 1');
-        
+
         if ($this->is_logged_in('TM')) {
             $condition[] = "tm_id = '" . $this->Emp_Id . "'";
         }
@@ -110,11 +109,11 @@ class User extends MY_Controller {
         $data['dashboardstatus1'] = $this->User_model->countchemist($condition);
         $data['dashboardstatus2'] = $this->User_model->countscat($condition);
         $data['dashboardstatus3'] = $this->User_model->counttour($condition);
-        
+
         $data = array('title' => 'Dashboard', 'content' => 'User/dashboard', 'page_title' => 'Dashboard', 'view_data' => $data);
         $this->load->view('template3', $data);
-    
     }
+
     public function addDoctor() {
         if ($this->is_logged_in('TM')) {
             if ($this->input->post()) {
@@ -249,15 +248,37 @@ class User extends MY_Controller {
             'Status = 1'
         );
         $data = array();
+        
+        ///TM Level Filters
         if ($this->is_logged_in('TM') || $this->input->get('TM_Emp_Id')) {
             $tm_id = $this->is_logged_in('TM') ? $this->TM_Emp_Id : $this->input->get('TM_Emp_Id');
             array_push($conditions, 'd.tm_id = ' . $tm_id);
         }
-if ($this->is_logged_in('admin')) {
-            
+        
+        ///Admin Level Filters
+        if ($this->is_logged_in('admin')) {           
+            $data['smlist'] =  '<select name="SM_Emp_Id" class="btn btn-default"><option value="">Select SM</option>' . $this->Master_Model->generateDropdown($this->User_model->getSM(), 'SM_Emp_Id', 'SM_Name') . '</select>';
+            $data['zone'] = '<select name="zone" class="btn btn-default"><option value="">Select Zone</option>' . $this->Master_Model->generateDropdown($this->User_model->getZone(), 'zone', 'zone') . '</select>';
+            $data['region'] = '<select name="region" class="btn btn-default"><option value="">Select Region</option>' . $this->Master_Model->generateDropdown($this->User_model->getRegion(), 'region', 'region') . '</select>';
         }
-        if ($this->is_logged_in('SM')) {
-            $SM_Emp_Id = $this->Emp_Id;
+
+        ///Region Level Filters, Adding Regions in main array
+        if ($this->input->get('region') != '') {
+            $region = $this->input->get('region');
+            $conditions[] = "region = '" . $region . "'";
+            $data['region'] = '<select name="region" class="btn btn-default"><option value="">Select Region</option>' . $this->Master_Model->generateDropdown($region, 'region', 'region', $region) . '</select>';
+        }
+
+        ///Adding Zones in main array
+        if ($this->input->get('zone') != '') {
+            $zone = $this->input->get('zone');
+            $conditions[] = "zone = '" . $zone . "'";
+            $data['zone'] = '<select name="zone" class="btn btn-default"><option value="">Select Zone</option>' . $this->Master_Model->generateDropdown($this->User_model->getZone(), 'zone', 'zone',$zone) . '</select>';
+        }
+
+        ///Add SM Level Filters
+        if ($this->is_logged_in('SM') || $this->input->get('SM_Emp_Id')) {
+            $SM_Emp_Id = $this->is_logged_in('BM') ? $this->Emp_Id : $this->input->get('SM_Emp_Id');
             $bmlist = $this->User_model->getbm(array('SM_Emp_Id = ' . $SM_Emp_Id));
             $data['bmlist'] = '<select class="btn btn-default" name="BM_Emp_Id"><option value="0" >Select BM</option>' . $this->Master_Model->generateDropdown($bmlist, 'BM_Emp_Id', 'BM_Name') . '</select>';
             if ($this->input->get('Bm_Emp_Id') > 0) {
@@ -267,6 +288,7 @@ if ($this->is_logged_in('admin')) {
             array_push($conditions, 'e.SM_Emp_Id = ' . $SM_Emp_Id);
         }
 
+        ///Adding BM Level filters
         if ($this->is_logged_in('BM') || $this->input->get('BM_Emp_Id')) {
             $BM_Emp_Id = $this->is_logged_in('BM') ? $this->Emp_Id : $this->input->get('BM_Emp_Id');
             $tmlist = $this->User_model->getEmployee(array('BM_Emp_Id = ' . $BM_Emp_Id));
@@ -278,7 +300,7 @@ if ($this->is_logged_in('admin')) {
             }
             array_push($conditions, 'e.BM_Emp_Id = ' . $BM_Emp_Id);
         }
-        
+
 
         if (!empty($conditions)) {
             $data['show'] = $this->User_model->getDoctor($conditions);
@@ -294,15 +316,38 @@ if ($this->is_logged_in('admin')) {
             'd.Status = 1'
         );
         $data = array();
+        
+        //TM Level Filters
         if ($this->is_logged_in('TM') || $this->input->get('TM_Emp_Id')) {
 
             $tm_id = $this->is_logged_in('TM') ? $this->TM_Emp_Id : $this->input->get('TM_Emp_Id');
             array_push($conditions, 'd.tm_id = ' . $tm_id);
         }
 
-        if ($this->is_logged_in('SM')) {
-            $SM_Emp_Id = $this->Emp_Id;
-            $bmlist = $this->User_model->getbm(array('SM_Emp_Id = ' . $SM_Emp_Id));
+        ///Admin Level Filters @Get Zone , Region ,Sm List
+        if ($this->is_logged_in('admin')) {           
+            $data['smlist'] =  '<select name="SM_Emp_Id" class="btn btn-default"><option value="">Select SM</option>' . $this->Master_Model->generateDropdown($this->User_model->getSM(), 'SM_Emp_Id', 'SM_Name') . '</select>';
+            $data['zone'] = '<select name="zone" class="btn btn-default"><option value="">Select Zone</option>' . $this->Master_Model->generateDropdown($this->User_model->getZone(), 'zone', 'zone') . '</select>';
+            $data['region'] = '<select name="region" class="btn btn-default"><option value="">Select Region</option>' . $this->Master_Model->generateDropdown($this->User_model->getRegion(), 'region', 'region') . '</select>';
+        }
+
+        ///Add Conditions For Region in Main Condition Array
+        if ($this->input->get('region') != '') {
+            $region = $this->input->get('region');
+            $conditions[] = "region = '" . $region . "'";
+            $data['region'] = '<select name="region" class="btn btn-default"><option value="">Select Region</option>' . $this->Master_Model->generateDropdown($region, 'region', 'region', $region) . '</select>';
+        }
+        
+        ///Add Zonal Conditions In main Condition Array
+        if ($this->input->get('zone') != '') {
+            $zone = $this->input->get('zone');
+            $conditions[] = "zone = '" . $zone . "'";
+            $data['zone'] = '<select name="zone" class="btn btn-default"><option value="">Select Zone</option>' . $this->Master_Model->generateDropdown($this->User_model->getZone(), 'zone', 'zone',$zone) . '</select>';
+        }
+
+        ///SM Level Contion @Get BM List
+        if ($this->is_logged_in('SM') || $this->input->get('SM_Emp_Id')) {
+            $SM_Emp_Id = $this->is_logged_in('BM') ? $this->Emp_Id : $this->input->get('SM_Emp_Id');
             $data['bmlist'] = '<select class="btn btn-default" name="BM_Emp_Id"><option value="0" >Select BM</option>' . $this->Master_Model->generateDropdown($bmlist, 'BM_Emp_Id', 'BM_Name') . '</select>';
             if ($this->input->get('Bm_Emp_Id') > 0) {
                 $data['tmlist'] = '<select class="btn btn-default" name="TM_Emp_Id"><option value="0"  >Select TM</option>' . $this->Master_Model->generateDropdown($tmlist, 'TM_Emp_Id', 'TM_Name', $this->input->get('TM_Emp_Id')) . '</select>';
@@ -310,6 +355,7 @@ if ($this->is_logged_in('admin')) {
             array_push($conditions, 'e.SM_Emp_Id = ' . $SM_Emp_Id);
         }
 
+        ///BM Level Conditions @Get TM List
         if ($this->is_logged_in('BM') || $this->input->get('BM_Emp_Id')) {
             $BM_Emp_Id = $this->is_logged_in('BM') ? $this->Emp_Id : $this->input->get('BM_Emp_Id');
             $tmlist = $this->User_model->getEmployee(array('BM_Emp_Id = ' . $BM_Emp_Id));
@@ -319,9 +365,7 @@ if ($this->is_logged_in('admin')) {
             }
             array_push($conditions, 'e.BM_Emp_Id = ' . $BM_Emp_Id);
         }
-if ($this->is_logged_in('admin')) {
-            
-        }
+
         if (!empty($conditions)) {
             $data['show'] = $this->User_model->getchemist($conditions);
         }
@@ -330,22 +374,45 @@ if ($this->is_logged_in('admin')) {
         $this->load->view('template3', $data);
     }
 
+    
     public function view_scat() {
 
         $conditions = array(
             'Status = 1'
         );
         $data = array();
+        
+        ///TM Level filters
         if ($this->is_logged_in('TM') || $this->input->get('TM_Emp_Id')) {
 
             $tm_id = $this->is_logged_in('TM') ? $this->TM_Emp_Id : $this->input->get('TM_Emp_Id');
             array_push($conditions, 'd.tm_id = ' . $tm_id);
         }
-if ($this->is_logged_in('admin')) {
-            
+        
+        ///Admin Level Filters
+        if ($this->is_logged_in('admin')) {           
+            $data['smlist'] =  '<select name="SM_Emp_Id" class="btn btn-default"><option value="">Select SM</option>' . $this->Master_Model->generateDropdown($this->User_model->getSM(), 'SM_Emp_Id', 'SM_Name') . '</select>';
+            $data['zone'] = '<select name="zone" class="btn btn-default"><option value="">Select Zone</option>' . $this->Master_Model->generateDropdown($this->User_model->getZone(), 'zone', 'zone') . '</select>';
+            $data['region'] = '<select name="region" class="btn btn-default"><option value="">Select Region</option>' . $this->Master_Model->generateDropdown($this->User_model->getRegion(), 'region', 'region') . '</select>';
         }
-        if ($this->is_logged_in('SM')) {
-            $SM_Emp_Id = $this->Emp_Id;
+
+        ///Adding Regional Filters in main condition Array
+        if ($this->input->get('region') != '') {
+            $region = $this->input->get('region');
+            $conditions[] = "region = '" . $region . "'";
+            $data['region'] = '<select name="region" class="btn btn-default"><option value="">Select Region</option>' . $this->Master_Model->generateDropdown($region, 'region', 'region', $region) . '</select>';
+        }
+
+        ///Adding Zonal Conditions in Main condition Array
+        if ($this->input->get('zone') != '') {
+            $zone = $this->input->get('zone');
+            $conditions[] = "zone = '" . $zone . "'";
+            $data['zone'] = '<select name="zone" class="btn btn-default"><option value="">Select Zone</option>' . $this->Master_Model->generateDropdown($this->User_model->getZone(), 'zone', 'zone',$zone) . '</select>';
+        }
+
+        ///Adding SM Level Filters
+        if ($this->is_logged_in('SM') || $this->input->get('SM_Emp_Id')) {
+            $SM_Emp_Id = $this->is_logged_in('BM') ? $this->Emp_Id : $this->input->get('SM_Emp_Id');
             $bmlist = $this->User_model->getbm(array('SM_Emp_Id = ' . $SM_Emp_Id));
             $data['bmlist'] = '<select class="btn btn-default" name="BM_Emp_Id"><option value="0" >Select BM</option>' . $this->Master_Model->generateDropdown($bmlist, 'BM_Emp_Id', 'BM_Name') . '</select>';
             if ($this->input->get('Bm_Emp_Id') > 0) {
@@ -355,6 +422,7 @@ if ($this->is_logged_in('admin')) {
             array_push($conditions, 'e.SM_Emp_Id = ' . $SM_Emp_Id);
         }
 
+        ///Adding BM Level Filters
         if ($this->is_logged_in('BM') || $this->input->get('BM_Emp_Id')) {
             $BM_Emp_Id = $this->is_logged_in('BM') ? $this->Emp_Id : $this->input->get('BM_Emp_Id');
             $tmlist = $this->User_model->getEmployee(array('BM_Emp_Id = ' . $BM_Emp_Id));
@@ -380,16 +448,34 @@ if ($this->is_logged_in('admin')) {
             'Status = 1'
         );
         $data = array();
+        
+        ///TM Level Filters
         if ($this->is_logged_in('TM') || $this->input->get('TM_Emp_Id')) {
             $tm_id = $this->is_logged_in('TM') ? $this->TM_Emp_Id : $this->input->get('TM_Emp_Id');
             array_push($conditions, 'd.tm_id = ' . $tm_id);
         }
-        if ($this->is_logged_in('admin')) {
-            
+        
+        ///Admin Filters
+        if ($this->is_logged_in('admin')) {           
+            $data['smlist'] =  '<select name="SM_Emp_Id" class="btn btn-default"><option value="">Select SM</option>' . $this->Master_Model->generateDropdown($this->User_model->getSM(), 'SM_Emp_Id', 'SM_Name') . '</select>';
+            $data['zone'] = '<select name="zone" class="btn btn-default"><option value="">Select Zone</option>' . $this->Master_Model->generateDropdown($this->User_model->getZone(), 'zone', 'zone') . '</select>';
+            $data['region'] = '<select name="region" class="btn btn-default"><option value="">Select Region</option>' . $this->Master_Model->generateDropdown($this->User_model->getRegion(), 'region', 'region') . '</select>';
         }
 
-        if ($this->is_logged_in('SM')) {
-            $SM_Emp_Id = $this->Emp_Id;
+        if ($this->input->get('region') != '') {
+            $region = $this->input->get('region');
+            $conditions[] = "region = '" . $region . "'";
+            $data['region'] = '<select name="region" class="btn btn-default"><option value="">Select Region</option>' . $this->Master_Model->generateDropdown($region, 'region', 'region', $region) . '</select>';
+        }
+
+        if ($this->input->get('zone') != '') {
+            $zone = $this->input->get('zone');
+            $conditions[] = "zone = '" . $zone . "'";
+            $data['zone'] = '<select name="zone" class="btn btn-default"><option value="">Select Zone</option>' . $this->Master_Model->generateDropdown($this->User_model->getZone(), 'zone', 'zone',$zone) . '</select>';
+        }
+
+        if ($this->is_logged_in('SM') || $this->input->get('SM_Emp_Id')) {
+            $SM_Emp_Id = $this->is_logged_in('BM') ? $this->Emp_Id : $this->input->get('SM_Emp_Id');
             $bmlist = $this->User_model->getbm(array('SM_Emp_Id = ' . $SM_Emp_Id));
             $data['bmlist'] = '<select class="btn btn-default" name="BM_Emp_Id"><option value="0" >Select BM</option>' . $this->Master_Model->generateDropdown($bmlist, 'BM_Emp_Id', 'BM_Name') . '</select>';
             if ($this->input->get('Bm_Emp_Id') > 0) {

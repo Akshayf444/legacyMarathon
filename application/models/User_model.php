@@ -100,9 +100,7 @@ class User_model extends CI_Model {
     }
 
     public function find_by_chemistid($id) {
-
         $sql = "Select *,c.chemist_id as id ,cd.chemist_id as data_id from chemist c left join  chemist_data cd on c.chemist_id=cd.chemist_id where c.chemist_id ='$id'and c.status='1'";
-
         $query = $this->db->query($sql);
         return $query->row();
     }
@@ -139,11 +137,9 @@ class User_model extends CI_Model {
 
     public function getchemist($conditions = array()) {
         $sql = "select * from chemist d INNER JOIN tbl_employee_master e ON e.TM_Emp_Id = d.tm_id left JOIN chemist_data cd on d.chemist_id= cd.chemist_id ";
-
         if (!empty($conditions)) {
             $sql.=" WHERE " . join(" AND ", $conditions);
         }
-
         $query = $this->db->query($sql);
         return $query->result();
     }
@@ -227,5 +223,34 @@ class User_model extends CI_Model {
         return $query->result();
     }
 
-    
+    public function getRegion($conditions = array()) {
+        $sql = "SELECT DISTINCT(Region) as region FROM tbl_employee_master ";
+        if (!empty($conditions)) {
+            $sql.=" WHERE " . join(" AND ", $conditions);
+        }
+
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
+
+    public function getZone($conditions = array()) {
+        $sql = "SELECT DISTINCT(Zone) as zone FROM tbl_employee_master ";
+        if (!empty($conditions)) {
+            $sql.=" WHERE " . join(" AND ", $conditions);
+        }
+
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
+
+    public function getSM($conditions = array()) {
+        $sql = "SELECT DISTINCT(SM_Emp_Id) as SM_Emp_Id,SM_Name FROM tbl_employee_master ";
+        if (!empty($conditions)) {
+            $sql.=" WHERE " . join(" AND ", $conditions);
+        }
+
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
+
 }
