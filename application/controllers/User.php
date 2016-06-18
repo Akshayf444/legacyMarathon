@@ -78,7 +78,7 @@ class User extends MY_Controller {
     }
 
     public function dashboard() {
-
+if ($this->is_logged_in('TM')) {
         $data['dashboardstatus'] = $this->User_model->dashboardStatus($this->Emp_Id);
         $data['dashboardstatus1'] = $this->User_model->dashboardStatus1($this->Emp_Id);
         $data['dashboardstatus2'] = $this->User_model->dashboardStatus2($this->Emp_Id);
@@ -87,7 +87,7 @@ class User extends MY_Controller {
         $data = array('title' => 'Dashboard', 'content' => 'User/dashboard', 'page_title' => 'Dashboard', 'view_data' => $data);
         $this->load->view('template3', $data);
     }
-
+    }
     public function addDoctor() {
         if ($this->is_logged_in('TM')) {
             if ($this->input->post()) {
