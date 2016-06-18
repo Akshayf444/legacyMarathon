@@ -227,36 +227,5 @@ class User_model extends CI_Model {
         return $query->result();
     }
 
-    public function dashboardStatus($ID) {
-        $sql = "SELECT count(doctor_id)  AS doctor "
-                . " FROM  tbl_employee_master em INNER JOIN doctor dm  ON dm.tm_id = em.TM_Emp_Id where dm.tm_id='$ID' AND dm.Status='1' ";
-
-        $query = $this->db->query($sql);
-        return $query->row();
-    }
-
-    public function dashboardStatus1($ID) {
-        $sql = "SELECT count(chemist_id) AS CHEMIST "
-                . " FROM  tbl_employee_master em INNER JOIN chemist dm  ON dm.tm_id = em.TM_Emp_Id where dm.tm_id='$ID' AND dm.Status='1' ";
-
-        $query = $this->db->query($sql);
-        return $query->row();
-    }
-
-    public function dashboardStatus2($ID) {
-        $sql = "SELECT SUM(NO_of_SCAT) AS Scat "
-                . " FROM tbl_employee_master em INNER JOIN SCAT dm  ON dm.tm_id = em.TM_Emp_Id where dm.tm_id='$ID' AND dm.Status='1' ";
-
-        $query = $this->db->query($sql);
-        return $query->row();
-    }
-
-    public function dashboardStatus3($ID) {
-        $sql = "SELECT SUM(dm.Taxi_Tour) AS taxi,sum(dm.bike_tour) as bike "
-                . " FROM  tbl_employee_master em INNER JOIN tour dm ON dm.tm_id = em.TM_Emp_Id where tm_id='$ID' and dm.Status =1  ";
-
-        $query = $this->db->query($sql);
-        return $query->row();
-    }
-
+    
 }
