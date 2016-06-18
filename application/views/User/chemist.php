@@ -11,7 +11,6 @@
 $attribute = array('id' => 'valid');
 echo form_open('User/addchemist', $attribute);
 ?>
-
 <div class="row">
     <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
         <div class="form-group">
@@ -23,22 +22,22 @@ echo form_open('User/addchemist', $attribute);
             <input type="number" class="form-control" value="" name="ASTHALIN_MDI" placeholder=" POB Of ASTHALIN MDI" /> </div>
         <div class="form-group">
             POB Of ASTHALIN DPI
-            <input type="text" class="form-control" value="" name="ASTHALIN_DPI" placeholder="POB Of ASTHALIN DPI"/> </div>
+            <input type="number" class="form-control" value="" name="ASTHALIN_DPI" placeholder="POB Of ASTHALIN DPI"/> </div>
         <div class="form-group">
             POB Of AEROCORT FORTE ROTACAPS
-            <input type="text"  class="form-control" name="AEROCORT_FORTE_ROTACAPS" placeholder="POB Of AEROCORT FORTE ROTACAPS" >
+            <input type="number"  class="form-control" name="AEROCORT_FORTE_ROTACAPS" placeholder="POB Of AEROCORT FORTE ROTACAPS" >
         </div>	    
         <div class="form-group">
             POB Of AEROCORT ROTACAPS
-            <input type="text"  class="form-control" name="AEROCORT_ROTACAPS" required="" placeholder="POB Of AEROCORT ROTACAPS" >
+            <input type="number"  class="form-control" name="AEROCORT_ROTACAPS" required="" placeholder="POB Of AEROCORT ROTACAPS" >
         </div>	
         <div class="form-group">
             POB Of AEROCORT MDI
-            <input type="text"  class="form-control" name="AEROCORT_MDI" placeholder=" POB Of AEROCORT MDI" >
+            <input type="number"  class="form-control" name="AEROCORT_MDI" placeholder=" POB Of AEROCORT MDI" >
         </div>	
         <div class="form-group">
             POB Of Other
-            <input type="text"  class="form-control" name="Other" placeholder="POB Of Other" >
+            <input type="number"  class="form-control" name="Other" placeholder="POB Of Other" >
         </div>	
         <div class="row">
 
@@ -102,9 +101,8 @@ echo form_open('User/addchemist', $attribute);
             <button class="btn btn-block btn-success " type="submit">Save</button>
         </div>
     </div>
+</div>
 </form>
-
-
 <script src="<?php echo asset_url() ?>js/formValidation.min.js" type="text/javascript"></script>
 <script src="<?php echo asset_url() ?>js/bootstrap.min.js" type="text/javascript"></script>
 <script>
@@ -139,5 +137,3 @@ echo form_open('User/addchemist', $attribute);
         });
     });
 </script>
-
-

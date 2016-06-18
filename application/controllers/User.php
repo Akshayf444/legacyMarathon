@@ -65,7 +65,15 @@ class User extends MY_Controller {
 
                             redirect('User/dashboard', 'refresh');
                         } else {
-                            $this->session->set_userdata('message', $this->Master_Model->DisplayAlert('Incorrect Username/Password', 'danger'));
+                            $adminexist = $this->User_model->adminauthentication($username, $password);
+                            if (!empty($adminexist)) {
+                                $this->session->set_userdata('Emp_Id', $adminexist['admin_id']);
+                                $this->session->set_userdata('Full_Name', $smexist['name']);
+                                $this->session->set_userdata('Designation', 'ADMIN');
+                                redirect('User/dashboard', 'refresh');
+                            } else {
+                                $this->session->set_userdata('message', $this->Master_Model->DisplayAlert('Incorrect Username/Password', 'danger'));
+                            }
                         }
                     }
                 }
@@ -77,16 +85,35 @@ class User extends MY_Controller {
         $this->load->view('template1', $data);
     }
 
-    public function dashboard() {
-if ($this->is_logged_in('TM')) {
-        $data['dashboardstatus'] = $this->User_model->dashboardStatus($this->Emp_Id);
-        $data['dashboardstatus1'] = $this->User_model->dashboardStatus1($this->Emp_Id);
-        $data['dashboardstatus2'] = $this->User_model->dashboardStatus2($this->Emp_Id);
-        $data['dashboardstatus3'] = $this->User_model->dashboardStatus3($this->Emp_Id);
 
+    public function dashboard() {       
+
+        $condition = array('Status = 1');
+        
+        if ($this->is_logged_in('TM')) {
+            $condition[] = "tm_id = '" . $this->Emp_Id . "'";
+        }
+
+        if ($this->is_logged_in('BM')) {
+            $condition[] = "BM_Emp_Id = '" . $this->Emp_Id . "'";
+        }
+
+        if ($this->is_logged_in('SM')) {
+            $condition[] = "SM_Emp_Id = '" . $this->Emp_Id . "'";
+        }
+        if ($this->is_logged_in('admin')) {
+            
+        }
+
+
+        $data['dashboardstatus'] = $this->User_model->countDoctor($condition);
+        $data['dashboardstatus1'] = $this->User_model->countchemist($condition);
+        $data['dashboardstatus2'] = $this->User_model->countscat($condition);
+        $data['dashboardstatus3'] = $this->User_model->counttour($condition);
+        
         $data = array('title' => 'Dashboard', 'content' => 'User/dashboard', 'page_title' => 'Dashboard', 'view_data' => $data);
         $this->load->view('template3', $data);
-    }
+    
     }
     public function addDoctor() {
         if ($this->is_logged_in('TM')) {
@@ -223,11 +250,12 @@ if ($this->is_logged_in('TM')) {
         );
         $data = array();
         if ($this->is_logged_in('TM') || $this->input->get('TM_Emp_Id')) {
-
             $tm_id = $this->is_logged_in('TM') ? $this->TM_Emp_Id : $this->input->get('TM_Emp_Id');
             array_push($conditions, 'd.tm_id = ' . $tm_id);
         }
-
+if ($this->is_logged_in('admin')) {
+            
+        }
         if ($this->is_logged_in('SM')) {
             $SM_Emp_Id = $this->Emp_Id;
             $bmlist = $this->User_model->getbm(array('SM_Emp_Id = ' . $SM_Emp_Id));
@@ -250,6 +278,7 @@ if ($this->is_logged_in('TM')) {
             }
             array_push($conditions, 'e.BM_Emp_Id = ' . $BM_Emp_Id);
         }
+        
 
         if (!empty($conditions)) {
             $data['show'] = $this->User_model->getDoctor($conditions);
@@ -290,7 +319,9 @@ if ($this->is_logged_in('TM')) {
             }
             array_push($conditions, 'e.BM_Emp_Id = ' . $BM_Emp_Id);
         }
-
+if ($this->is_logged_in('admin')) {
+            
+        }
         if (!empty($conditions)) {
             $data['show'] = $this->User_model->getchemist($conditions);
         }
@@ -301,7 +332,6 @@ if ($this->is_logged_in('TM')) {
 
     public function view_scat() {
 
-        $conditions = array();
         $conditions = array(
             'Status = 1'
         );
@@ -311,7 +341,9 @@ if ($this->is_logged_in('TM')) {
             $tm_id = $this->is_logged_in('TM') ? $this->TM_Emp_Id : $this->input->get('TM_Emp_Id');
             array_push($conditions, 'd.tm_id = ' . $tm_id);
         }
-
+if ($this->is_logged_in('admin')) {
+            
+        }
         if ($this->is_logged_in('SM')) {
             $SM_Emp_Id = $this->Emp_Id;
             $bmlist = $this->User_model->getbm(array('SM_Emp_Id = ' . $SM_Emp_Id));
@@ -344,7 +376,6 @@ if ($this->is_logged_in('TM')) {
 
     public function view_tour() {
 
-        $conditions = array();
         $conditions = array(
             'Status = 1'
         );
@@ -352,6 +383,9 @@ if ($this->is_logged_in('TM')) {
         if ($this->is_logged_in('TM') || $this->input->get('TM_Emp_Id')) {
             $tm_id = $this->is_logged_in('TM') ? $this->TM_Emp_Id : $this->input->get('TM_Emp_Id');
             array_push($conditions, 'd.tm_id = ' . $tm_id);
+        }
+        if ($this->is_logged_in('admin')) {
+            
         }
 
         if ($this->is_logged_in('SM')) {
@@ -394,10 +428,7 @@ if ($this->is_logged_in('TM')) {
         $id = $_GET['id'];
         $data = array('status' => 0);
         $this->User_model->del_chemist($id, $data);
-
         $this->User_model->del_chemistdata($id, $data);
-
-
         redirect('User/view_chemist', 'refresh');
     }
 
@@ -482,7 +513,7 @@ if ($this->is_logged_in('TM')) {
             redirect('User/view_doctor', 'refresh');
         }
 
-        $data = array('title' => 'Upadte Doctor', 'content' => 'User/edit_doc', 'page_title' => 'Update Doctor', 'view_data' => $data);
+        $data = array('title' => 'Update Doctor', 'content' => 'User/edit_doc', 'page_title' => 'Update Doctor', 'view_data' => $data);
         $this->load->view('template3', $data);
     }
 
@@ -520,7 +551,7 @@ if ($this->is_logged_in('TM')) {
             redirect('User/view_chemist', 'refresh');
         }
 
-        $data = array('title' => 'Upadte Chemist', 'content' => 'User/edit_chemist', 'page_title' => 'Update Chemist', 'view_data' => $data);
+        $data = array('title' => 'Update Chemist', 'content' => 'User/edit_chemist', 'page_title' => 'Update Chemist', 'view_data' => $data);
         $this->load->view('template3', $data);
     }
 
@@ -545,7 +576,7 @@ if ($this->is_logged_in('TM')) {
             redirect('User/view_scat', 'refresh');
         }
 
-        $data = array('title' => 'Upadte SCAT', 'content' => 'User/edit_scat', 'page_title' => 'Update SCAT', 'view_data' => $data);
+        $data = array('title' => 'Update SCAT', 'content' => 'User/edit_scat', 'page_title' => 'Update SCAT', 'view_data' => $data);
         $this->load->view('template3', $data);
     }
 

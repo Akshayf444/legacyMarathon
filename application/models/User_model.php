@@ -34,6 +34,15 @@ class User_model extends CI_Model {
         return $query->row_array();
     }
 
+    public function adminauthentication($username, $password) {
+        $this->db->select('*');
+        $this->db->from('admin');
+        $this->db->where(array('admin_id' => $username, 'admin_id' => $username));
+        $query = $this->db->get();
+        // echo $this->db->last_query();
+        return $query->row_array();
+    }
+
     public function addDoctor($data) {
         $this->db->insert('doctor', $data);
 //        return $this->db->insert_id;
@@ -41,8 +50,8 @@ class User_model extends CI_Model {
 
     public function addchemist($data) {
         $this->db->insert('chemist', $data);
-
     }
+
     public function addchemist_data($data) {
         $this->db->insert('chemist_data', $data);
 
@@ -67,18 +76,16 @@ class User_model extends CI_Model {
     public function del_chemist($id, $data) {
         $this->db->where('chemist_id', $id);
         $this->db->update('chemist', $data);
-
     }
-     public function del_chemistdata($id, $data) {
+
+    public function del_chemistdata($id, $data) {
         $this->db->where('chemist_id', $id);
         $this->db->update('chemist_data', $data);
-  
     }
 
     public function del_scat($id, $data) {
         $this->db->where('Scat_id', $id);
         $this->db->update('SCAT', $data);
-
     }
 
     public function del_tour($id, $data) {
@@ -114,16 +121,21 @@ class User_model extends CI_Model {
 
     public function getDoctor($conditions = array()) {
         $sql = "select * from doctor d INNER JOIN tbl_employee_master e ON e.TM_Emp_Id = d.tm_id ";
-
         if (!empty($conditions)) {
             $sql.=" WHERE " . join(" AND ", $conditions);
         }
-        
-
         $query = $this->db->query($sql);
         return $query->result();
     }
 
+    public function countDoctor($conditions = array()) {
+        $sql = "select count(d.doctor_id)  AS doctor  from doctor d INNER JOIN tbl_employee_master e ON e.TM_Emp_Id = d.tm_id ";
+        if (!empty($conditions)) {
+            $sql.=" WHERE " . join(" AND ", $conditions);
+        }
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
 
     public function getchemist($conditions = array()) {
         $sql = "select * from chemist d INNER JOIN tbl_employee_master e ON e.TM_Emp_Id = d.tm_id left JOIN chemist_data cd on d.chemist_id= cd.chemist_id ";
@@ -131,43 +143,60 @@ class User_model extends CI_Model {
         if (!empty($conditions)) {
             $sql.=" WHERE " . join(" AND ", $conditions);
         }
-        
-     
 
         $query = $this->db->query($sql);
         return $query->result();
     }
 
-
-    public function getscat($conditions = array()) {
-
-        $sql = "select * from SCAT d INNER JOIN tbl_employee_master e ON e.TM_Emp_Id = d.tm_id ";
+    public function countchemist($conditions = array()) {
+        $sql = "select COUNT(d.chemist_id) AS CHEMIST  from chemist d INNER JOIN tbl_employee_master e ON e.TM_Emp_Id = d.tm_id left JOIN chemist_data cd on d.chemist_id= cd.chemist_id ";
 
         if (!empty($conditions)) {
             $sql.=" WHERE " . join(" AND ", $conditions);
         }
-        
 
-     
         $query = $this->db->query($sql);
         return $query->result();
     }
 
-    
+    public function getscat($conditions = array()) {
+        $sql = "select * from SCAT d INNER JOIN tbl_employee_master e ON e.TM_Emp_Id = d.tm_id ";
+        if (!empty($conditions)) {
+            $sql.=" WHERE " . join(" AND ", $conditions);
+        }
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
+
+    public function countscat($conditions = array()) {
+        $sql = "select SUM(d.NO_of_SCAT) as Scat from SCAT d INNER JOIN tbl_employee_master e ON e.TM_Emp_Id = d.tm_id ";
+        if (!empty($conditions)) {
+            $sql.=" WHERE " . join(" AND ", $conditions);
+        }
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
 
     public function gettour($conditions = array()) {
-
         $sql = "select * from tour d INNER JOIN tbl_employee_master e ON e.TM_Emp_Id = d.tm_id ";
 
         if (!empty($conditions)) {
             $sql.=" WHERE " . join(" AND ", $conditions);
         }
-        
 
-     
         $query = $this->db->query($sql);
         return $query->result();
+    }
 
+    public function counttour($conditions = array()) {
+        $sql = "select SUM(d.Taxi_Tour) AS taxi,sum(d.bike_tour) as bike  from tour d INNER JOIN tbl_employee_master e ON e.TM_Emp_Id = d.tm_id ";
+
+        if (!empty($conditions)) {
+            $sql.=" WHERE " . join(" AND ", $conditions);
+        }
+
+        $query = $this->db->query($sql);
+        return $query->result();
     }
 
     public function getEmployee($conditions = array()) {
@@ -198,34 +227,36 @@ class User_model extends CI_Model {
         return $query->result();
     }
 
-  
-            public function dashboardStatus($ID) {
-        $sql = "SELECT count(
-    doctor_id)  AS doctor "
+    public function dashboardStatus($ID) {
+        $sql = "SELECT count(doctor_id)  AS doctor "
                 . " FROM  tbl_employee_master em INNER JOIN doctor dm  ON dm.tm_id = em.TM_Emp_Id where dm.tm_id='$ID' AND dm.Status='1' ";
-     
+
         $query = $this->db->query($sql);
         return $query->row();
     }
- public function dashboardStatus1($ID) {
+
+    public function dashboardStatus1($ID) {
         $sql = "SELECT count(chemist_id) AS CHEMIST "
                 . " FROM  tbl_employee_master em INNER JOIN chemist dm  ON dm.tm_id = em.TM_Emp_Id where dm.tm_id='$ID' AND dm.Status='1' ";
-     
+
         $query = $this->db->query($sql);
         return $query->row();
     }
-     public function dashboardStatus2($ID) {
+
+    public function dashboardStatus2($ID) {
         $sql = "SELECT SUM(NO_of_SCAT) AS Scat "
                 . " FROM tbl_employee_master em INNER JOIN SCAT dm  ON dm.tm_id = em.TM_Emp_Id where dm.tm_id='$ID' AND dm.Status='1' ";
-     
+
         $query = $this->db->query($sql);
         return $query->row();
     }
-     public function dashboardStatus3($ID) {
+
+    public function dashboardStatus3($ID) {
         $sql = "SELECT SUM(dm.Taxi_Tour) AS taxi,sum(dm.bike_tour) as bike "
                 . " FROM  tbl_employee_master em INNER JOIN tour dm ON dm.tm_id = em.TM_Emp_Id where tm_id='$ID' and dm.Status =1  ";
-     
+
         $query = $this->db->query($sql);
         return $query->row();
     }
+
 }

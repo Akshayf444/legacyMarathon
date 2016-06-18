@@ -17,27 +17,21 @@
             </form>
         </div>
     </div>
-
     <div class="col-lg-12 table-responsive" >
         <table class="table table-bordered table-hover panel" id="datatable">
             <thead>
                 <tr>
                     <th>Sr.</th>
-
-                    <th>Name of HQ</th>
-
-                    <th>No of Attendee</th>
-                    <th>RXS Of ASTHALIN MDI</th>
+                    <th>No Of SCAT</th>
+                    <th>No Of Attendee</th>
+                    <th>POB Of ASTHALIN MDI</th>
                     <th>POB Of ASTHALIN DP</th>
                     <th>POB Of AEROCORT FORTE ROTACAPS</th>
                     <th>POB Of AEROCORT ROTACAPS</th>
-                    <th>POB Of AEROCORT_MDI</th>
+                    <th>POB Of AEROCORT MDI</th>
                     <th>Other</th>
-
-
                     <?php if ($this->session->userdata('Designation') == 'TM') { ?>
                         <th>Action</th> <?php } ?>
-
                 </tr>
             </thead>
             <tbody>
@@ -47,9 +41,7 @@
                     foreach ($show as $row) :
                         ?><tr>  
                             <td data-title="Sr"><?php echo $count++; ?></td>
-
                             <td data-title="Name of HQ"><?php echo $row->No_of_SCAT; ?></td>
-
                             <td data-title="No of Attendee"><?php echo $row->No_of_Attendee; ?></td>
                             <td data-title="POB Of ASTHALIN MDI"><?php echo $row->ASTHALIN_MDI; ?> </td> 
                             <td data-title="POB Of ASTHALIN DPI"><?php echo $row->ASTHALIN_DPI; ?></td>  
@@ -57,9 +49,6 @@
                             <td data-title="POB Of AEROCORT ROTACAPS"><?php echo $row->AEROCORT_ROTACAPS; ?></td> 
                             <td data-title="POB Of AEROCORT MDI"><?php echo $row->AEROCORT_MDI; ?></td>
                             <td data-title="Other"><?php echo $row->Other; ?></td>  
-
-
-
                             <td>  
                                 <?php if ($this->session->userdata('Designation') == 'TM') { ?>
                                     <a class="fa fa-trash-o btn-danger btn-xs" class=""  onclick="deletedoc('<?php echo site_url('User/scat_del?id=') . $row->Scat_id; ?>')"></a> 
@@ -75,9 +64,6 @@
             </tbody>
         </table>
     </div>
-
-
-
 </div>
 <script>
     function deletedoc(url) {
