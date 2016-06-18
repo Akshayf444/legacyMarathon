@@ -90,7 +90,7 @@ class User extends MY_Controller {
         $condition = array('Status = 1');
         
         if ($this->is_logged_in('TM')) {
-            $condition[] = "TM_EmpID = '" . $this->Emp_Id . "'";
+            $condition[] = "tm_id = '" . $this->Emp_Id . "'";
         }
 
         if ($this->is_logged_in('BM')) {
