@@ -65,7 +65,15 @@ class User extends MY_Controller {
 
                             redirect('User/dashboard', 'refresh');
                         } else {
-                            $this->session->set_userdata('message', $this->Master_Model->DisplayAlert('Incorrect Username/Password', 'danger'));
+                            $adminexist = $this->User_model->adminauthentication($username, $password);
+                            if (!empty($adminexist)) {
+                                $this->session->set_userdata('Emp_Id', $adminexist['admin_id']);
+                                $this->session->set_userdata('Full_Name', $smexist['name']);
+                                $this->session->set_userdata('Designation', 'ADMIN');
+                                redirect('User/dashboard', 'refresh');
+                            } else {
+                                $this->session->set_userdata('message', $this->Master_Model->DisplayAlert('Incorrect Username/Password', 'danger'));
+                            }
                         }
                     }
                 }
@@ -77,13 +85,27 @@ class User extends MY_Controller {
         $this->load->view('template1', $data);
     }
 
-    public function dashboard() {
+    public function dashboard() {       
 
-        $data['dashboardstatus'] = $this->User_model->dashboardStatus($this->Emp_Id);
-        $data['dashboardstatus1'] = $this->User_model->dashboardStatus1($this->Emp_Id);
-        $data['dashboardstatus2'] = $this->User_model->dashboardStatus2($this->Emp_Id);
-        $data['dashboardstatus3'] = $this->User_model->dashboardStatus3($this->Emp_Id);
+        $condition = array('Status = 1');
+        
+        if ($this->is_logged_in('TM')) {
+            $condition[] = "TM_EmpID = '" . $this->Emp_Id . "'";
+        }
 
+        if ($this->is_logged_in('BM')) {
+            $condition[] = "BM_Emp_Id = '" . $this->Emp_Id . "'";
+        }
+
+        if ($this->is_logged_in('SM')) {
+            $condition[] = "SM_Emp_Id = '" . $this->Emp_Id . "'";
+        }
+
+        $data['dashboardstatus'] = $this->User_model->countDoctor($condition);
+        $data['dashboardstatus1'] = $this->User_model->countchemist($condition);
+        $data['dashboardstatus2'] = $this->User_model->countscat($condition);
+        $data['dashboardstatus3'] = $this->User_model->counttour($condition);
+        
         $data = array('title' => 'Dashboard', 'content' => 'User/dashboard', 'page_title' => 'Dashboard', 'view_data' => $data);
         $this->load->view('template3', $data);
     }
@@ -223,7 +245,6 @@ class User extends MY_Controller {
         );
         $data = array();
         if ($this->is_logged_in('TM') || $this->input->get('TM_Emp_Id')) {
-
             $tm_id = $this->is_logged_in('TM') ? $this->TM_Emp_Id : $this->input->get('TM_Emp_Id');
             array_push($conditions, 'd.tm_id = ' . $tm_id);
         }
@@ -250,6 +271,7 @@ class User extends MY_Controller {
             }
             array_push($conditions, 'e.BM_Emp_Id = ' . $BM_Emp_Id);
         }
+        
 
         if (!empty($conditions)) {
             $data['show'] = $this->User_model->getDoctor($conditions);
