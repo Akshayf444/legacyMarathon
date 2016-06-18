@@ -40,9 +40,7 @@ echo form_open('User/addDoctor', $attribute);
     <div class="form-group">
         <label>RXS Of Other</label>
         <input type="number"  class="form-control" name="Other" placeholder=" RXS Of Other" >
-    </div>	
-    
-    
+    </div>
     <div class="form-group">
         <label> Part Of Fun </label> <input type="radio" name="part_of_fun" value="Yes" />Yes
         <input type="radio" name="part_of_fun" value="No" /> No
