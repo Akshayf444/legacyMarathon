@@ -68,7 +68,7 @@ class User extends MY_Controller {
                             $adminexist = $this->User_model->adminauthentication($username, $password);
                             if (!empty($adminexist)) {
                                 $this->session->set_userdata('Emp_Id', $adminexist['admin_id']);
-                                $this->session->set_userdata('Full_Name', $smexist['name']);
+                                $this->session->set_userdata('Full_Name', $adminexist['name']);
                                 $this->session->set_userdata('Designation', 'ADMIN');
                                 redirect('User/dashboard', 'refresh');
                             } else {
