@@ -134,7 +134,7 @@ class User_model extends CI_Model {
             $sql.=" WHERE " . join(" AND ", $conditions);
         }
         $query = $this->db->query($sql);
-        return $query->result();
+        return $query->row();
     }
 
     public function getchemist($conditions = array()) {
@@ -156,7 +156,7 @@ class User_model extends CI_Model {
         }
 
         $query = $this->db->query($sql);
-        return $query->result();
+        return $query->row();
     }
 
     public function getscat($conditions = array()) {
@@ -174,7 +174,7 @@ class User_model extends CI_Model {
             $sql.=" WHERE " . join(" AND ", $conditions);
         }
         $query = $this->db->query($sql);
-        return $query->result();
+        return $query->row();
     }
 
     public function gettour($conditions = array()) {
@@ -196,7 +196,7 @@ class User_model extends CI_Model {
         }
 
         $query = $this->db->query($sql);
-        return $query->result();
+        return $query->row();
     }
 
     public function getEmployee($conditions = array()) {

@@ -88,7 +88,7 @@ class User extends MY_Controller {
 
     public function dashboard() {       
 
-        $condition = array('Status = 1');
+        $condition = array('d.Status = 1');
         
         if ($this->is_logged_in('TM')) {
             $condition[] = "tm_id = '" . $this->Emp_Id . "'";
