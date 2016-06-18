@@ -55,33 +55,20 @@
 
             <!-- Main Header -->
             <header class="main-header">
-                <a href="<?php echo site_url('User/adddoctor'); ?>" class="logo" style="background-color: #fff;"><b><img src="<?php echo asset_url() ?>images/youngdoctor.png"  style="height: 45%"></b></a>
+                <a href="<?php echo site_url('User/dashboard'); ?>" class="logo" style="background-color: #fff;"><b><img src="<?php echo asset_url() ?>images/youngdoctor.png"  style="height: 45%"></b></a>
                 <!-- Header Navbar -->
                 <nav class="navbar navbar-static-top" role="navigation">
                     <!-- Sidebar toggle button-->
                     <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
                         <span class="sr-only">Toggle navigation</span>
                     </a>
-                  
-<!--                    <h6 style="text-align: center; font-size: 18px">Welcome to Legacy Marathon</h6>-->
-                    
-                    <!-- Navbar Right Menu -->
-                    <div class="navbar-custom-menu">
-                       
 
-                           
-                        <ul class="nav navbar-nav">
-                         
-                               
-                            <!-- User Account Menu -->
-                            <li class="dropdown user user-menu">
-                                <!-- Menu Toggle Button -->
-                              
-
-                    <b class="hidden-xs"  style="font-size: large;    padding: 13px 15px;float: left" >Welcome to Legacy Marathon</b>
+                    <!--                    <h6 style="text-align: center; font-size: 18px">Welcome to Legacy Marathon</h6>-->
 
                     <!-- Navbar Right Menu -->
                     <div class="navbar-custom-menu">
+
+
 
                         <ul class="nav navbar-nav">
 
@@ -91,112 +78,125 @@
                                 <!-- Menu Toggle Button -->
 
 
-                                <?php $CI = & get_instance(); ?>
-                                <p style="padding-top: 10px;color: #FFFFFF" ><span class=""><?php echo isset($CI->Full_Name) ? $CI->Full_Name . "&nbsp" : ''; ?></span>
-                                    <a class="text-aqua" href="<?php echo site_url('User/logout'); ?>">
-                                        <span style="font-size: 20px" class="fa fa-power-off">  </span>
-                                    </a>
-                                </p>
+                                <b class="hidden-xs"  style="font-size: large;    padding: 13px 15px;float: left" >Welcome to Legacy Marathon</b>
 
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </header>
-            <aside class="main-sidebar">
-                <!-- sidebar: style can be found in sidebar.less -->
-                <section class="sidebar">
-                    <!-- Sidebar user panel -->
-                    <ul class="sidebar-menu">
+                                <!-- Navbar Right Menu -->
+                                <div class="navbar-custom-menu">
 
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-dashboard"></i> <span>Doctor</span> <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu" style="display: none;">
-                                <?php
-                                if ($this->session->userdata('Designation') == 'TM') {
-                                    echo '<li><a href="' . site_url('User/addDoctor') . '"><i class="fa fa-circle-o"></i> Add Doctor</a></li>';
-                                }
-                                ?>
+                                    <ul class="nav navbar-nav">
 
-                                <li class=""><a href="<?php echo site_url('User/view_doctor'); ?>"><i class="fa fa-circle-o"></i>  View Doctor</a></li>
-                            </ul>
-                        </li>
 
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-dashboard"></i> <span>Chemist</span> <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu" style="display: none;">
-                                <?php
-                                if ($this->session->userdata('Designation') == 'TM') {
+                                        <!-- User Account Menu -->
+                                        <li class="dropdown user user-menu">
+                                            <!-- Menu Toggle Button -->
 
-                                    echo '<li><a href="' . site_url('User/addchemist') . '"><i class="fa fa-circle-o"></i> Add Chemist</a></li>';
-                                }
-                                ?>
-                                <li class=""><a href="<?php echo site_url('User/view_chemist'); ?>"><i class="fa fa-circle-o"></i>  View Chemist</a></li>
-                            </ul>
-                        </li>
-                        
 
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-dashboard"></i> <span>SCAT</span> <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu" style="display: none;">
-                                <?php
-                                if ($this->session->userdata('Designation') == 'TM') {
+                                            <?php $CI = & get_instance(); ?>
+                                            <p style="padding-top: 10px;color: #FFFFFF" ><span class=""><?php echo isset($CI->Full_Name) ? $CI->Full_Name . "&nbsp" : ''; ?></span>
+                                                <a class="text-aqua" href="<?php echo site_url('User/logout'); ?>">
+                                                    <span style="font-size: 20px" class="fa fa-power-off">  </span>
+                                                </a>
+                                            </p>
 
-                                    echo '<li><a href="' . site_url('User/SCAT') . '"><i class="fa fa-circle-o"></i> Add SCAT</a></li>';
-                                }
-                                ?>
-                                <li class=""><a href="<?php echo site_url('User/view_scat'); ?>"><i class="fa fa-circle-o"></i>  View SCAT</a></li>
-                            </ul>
-                        </li>
+                                        </li>
+                                    </ul>
+                                </div>
+                                </nav>
+                                </header>
+                                <aside class="main-sidebar">
+                                    <!-- sidebar: style can be found in sidebar.less -->
+                                    <section class="sidebar">
+                                        <!-- Sidebar user panel -->
+                                        <ul class="sidebar-menu">
+                                            <li class=""><a href="<?php echo site_url('User/dashboard'); ?>"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+                                            <li class="treeview">
+                                                <a href="#">
+                                                    <i class="fa fa-dashboard"></i> <span>Doctor</span> <i class="fa fa-angle-left pull-right"></i>
+                                                </a>
+                                                <ul class="treeview-menu" style="display: none;">
+                                                    <?php
+                                                    if ($this->session->userdata('Designation') == 'TM') {
+                                                        echo '<li><a href="' . site_url('User/addDoctor') . '"><i class="fa fa-circle-o"></i> Add Doctor</a></li>';
+                                                    }
+                                                    ?>
 
-                        <li class="treeview">
+                                                    <li class=""><a href="<?php echo site_url('User/view_doctor'); ?>"><i class="fa fa-circle-o"></i>  View Doctor</a></li>
+                                                </ul>
+                                            </li>
 
-                            <a href="#">
-                                <i class="fa fa-dashboard"></i> <span>TOUR</span> <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu" style="display: none;">
-                                <?php
-                                if ($this->session->userdata('Designation') == 'TM') {
+                                            <li class="treeview">
+                                                <a href="#">
+                                                    <i class="fa fa-dashboard"></i> <span>Chemist</span> <i class="fa fa-angle-left pull-right"></i>
+                                                </a>
+                                                <ul class="treeview-menu" style="display: none;">
+                                                    <?php
+                                                    if ($this->session->userdata('Designation') == 'TM') {
 
-                                    echo '<li><a href="' . site_url('User/tour') . '"><i class="fa fa-circle-o"></i> Add TOUR</a></li>';
-                                }
-                                ?>
-                                <li class=""><a href="<?php echo site_url('User/view_tour'); ?>"><i class="fa fa-circle-o"></i>  View TOUR</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </section>
-                <!-- /.sidebar -->
-            </aside>   
+                                                        echo '<li><a href="' . site_url('User/addchemist') . '"><i class="fa fa-circle-o"></i> Add Chemist</a></li>';
+                                                    }
+                                                    ?>
+                                                    <li class=""><a href="<?php echo site_url('User/view_chemist'); ?>"><i class="fa fa-circle-o"></i>  View Chemist</a></li>
+                                                </ul>
+                                            </li>
 
-            <!-- Content Wrapper. Contains page content -->
-            <div class="content-wrapper" >
-                <!-- Content Header (Page header) -->
-                <section class="content-header">
-                    <h1>
-                        <?php echo isset($page_title) ? $page_title : ''; ?>
-                        <small></small>
-                    </h1>
-                </section>
 
-                <!-- Main content -->
-                <section class="content" >
-                    <?php
-                    echo $this->session->userdata('message') ? $this->session->userdata('message') : '';
-                    $this->session->unset_userdata('message');
-                    ?>
-                    <?php $this->load->view($content, $view_data); ?>
-                </section>
-            </div>
-            <script src="<?php echo asset_url() ?>dashboard/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-            <script src='<?php echo asset_url() ?>js/jquery.bootstrap-growl.min.js' type='text/javascript'></script>
-            <!-- AdminLTE App -->
-            <script src="<?php echo asset_url() ?>dashboard/dist/js/app.min.js" type="text/javascript"></script>
-    </body>
-</html>
+                                            <li class="treeview">
+                                                <a href="#">
+                                                    <i class="fa fa-dashboard"></i> <span>SCAT</span> <i class="fa fa-angle-left pull-right"></i>
+                                                </a>
+                                                <ul class="treeview-menu" style="display: none;">
+                                                    <?php
+                                                    if ($this->session->userdata('Designation') == 'TM') {
+
+                                                        echo '<li><a href="' . site_url('User/SCAT') . '"><i class="fa fa-circle-o"></i> Add SCAT</a></li>';
+                                                    }
+                                                    ?>
+                                                    <li class=""><a href="<?php echo site_url('User/view_scat'); ?>"><i class="fa fa-circle-o"></i>  View SCAT</a></li>
+                                                </ul>
+                                            </li>
+
+                                            <li class="treeview">
+
+                                                <a href="#">
+                                                    <i class="fa fa-dashboard"></i> <span>TOUR</span> <i class="fa fa-angle-left pull-right"></i>
+                                                </a>
+                                                <ul class="treeview-menu" style="display: none;">
+                                                    <?php
+                                                    if ($this->session->userdata('Designation') == 'TM') {
+
+                                                        echo '<li><a href="' . site_url('User/tour') . '"><i class="fa fa-circle-o"></i> Add TOUR</a></li>';
+                                                    }
+                                                    ?>
+                                                    <li class=""><a href="<?php echo site_url('User/view_tour'); ?>"><i class="fa fa-circle-o"></i>  View TOUR</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </section>
+                                    <!-- /.sidebar -->
+                                </aside>   
+
+                                <!-- Content Wrapper. Contains page content -->
+                                <div class="content-wrapper" >
+                                    <!-- Content Header (Page header) -->
+                                    <section class="content-header">
+                                        <h1>
+                                            <?php echo isset($page_title) ? $page_title : ''; ?>
+                                            <small></small>
+                                        </h1>
+                                    </section>
+
+                                    <!-- Main content -->
+                                    <section class="content" >
+                                        <?php
+                                        echo $this->session->userdata('message') ? $this->session->userdata('message') : '';
+                                        $this->session->unset_userdata('message');
+                                        ?>
+                                        <?php $this->load->view($content, $view_data); ?>
+                                    </section>
+                                </div>
+                                <script src="<?php echo asset_url() ?>dashboard/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+                                <script src='<?php echo asset_url() ?>js/jquery.bootstrap-growl.min.js' type='text/javascript'></script>
+                                <!-- AdminLTE App -->
+                                <script src="<?php echo asset_url() ?>dashboard/dist/js/app.min.js" type="text/javascript"></script>
+                                </body>
+                                </html>

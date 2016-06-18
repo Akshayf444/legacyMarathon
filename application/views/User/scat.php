@@ -41,8 +41,6 @@ echo form_open('User/SCAT', $attribute);
     </div>
 </div>
 </form>
-
-
 <script src="<?php echo asset_url() ?>js/formValidation.min.js" type="text/javascript"></script>
 <script src="<?php echo asset_url() ?>js/bootstrap.min.js" type="text/javascript"></script>
 <script>
@@ -70,4 +68,3 @@ echo form_open('User/SCAT', $attribute);
         });
     });
 </script>
-

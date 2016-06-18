@@ -20,26 +20,26 @@ echo form_open('User/addDoctor', $attribute);
         <label>Speciality</label>
         <input type="text" class="form-control" value="" name="spl" placeholder="Speciality"/> </div>
     <div class="form-group">
-        <label>RXS Of ASTHALIN_MDI</label>
-        <input type="number" class="form-control" value="" name="ASTHALIN_MDI" placeholder="RXS Of ASTHALIN_MDI" /> </div>
+        <label>RXS Of ASTHALIN MDI</label>
+        <input type="number" class="form-control" value="" name="ASTHALIN_MDI" placeholder="RXS Of ASTHALIN MDI" /> </div>
     <div class="form-group">
-        <label>RXS Of ASTHALIN_DPI</label>
-        <input type="text" class="form-control" value="" name="ASTHALIN_DPI" placeholder="RXS Of ASTHALIN_DPI"/> </div>
+        <label>RXS Of ASTHALIN DPI</label>
+        <input type="number" class="form-control" value="" name="ASTHALIN_DPI" placeholder="RXS Of ASTHALIN DPI"/> </div>
     <div class="form-group">
-        <label>RXS Of AEROCORT_FORTE_ROTACAPS</label>
-        <input type="text"  class="form-control" name="AEROCORT_FORTE_ROTACAPS" placeholder="RXS Of AEROCORT_FORTE_ROTACAPS" >
+        <label>RXS Of AEROCORT FORTE ROTACAPS</label>
+        <input type="number"  class="form-control" name="AEROCORT_FORTE_ROTACAPS" placeholder="RXS Of AEROCORT FORTE ROTACAPS" >
     </div>	    
     <div class="form-group">
-         <label>RXS Of AEROCORT_ROTACAPS</label>
-        <input type="text"  class="form-control" name="AEROCORT_ROTACAPS" required="" placeholder="RXS Of AEROCORT_ROTACAPS" >
+         <label>RXS Of AEROCORT ROTACAPS</label>
+        <input type="number"  class="form-control" name="AEROCORT_ROTACAPS" required="" placeholder="RXS Of AEROCORT ROTACAPS" >
     </div>	
     <div class="form-group">
-         <label>RXS Of AEROCORT_MDI</label>
-        <input type="text"  class="form-control" name="AEROCORT_MDI" placeholder="RXS Of AEROCORT_MDI" >
+         <label>RXS Of AEROCORT MDI</label>
+        <input type="number"  class="form-control" name="AEROCORT_MDI" placeholder="RXS Of AEROCORT MDI" >
     </div>	
     <div class="form-group">
         <label>RXS Of Other</label>
-        <input type="text"  class="form-control" name="Other" placeholder=" RXS Of Other" >
+        <input type="number"  class="form-control" name="Other" placeholder=" RXS Of Other" >
     </div>	
     
     
