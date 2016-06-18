@@ -462,18 +462,21 @@ class User extends MY_Controller {
             $data['region'] = '<select name="region" class="btn btn-default"><option value="">Select Region</option>' . $this->Master_Model->generateDropdown($this->User_model->getRegion(), 'region', 'region') . '</select>';
         }
 
+        ///Adding Region Filter To Main Array
         if ($this->input->get('region') != '') {
             $region = $this->input->get('region');
             $conditions[] = "region = '" . $region . "'";
             $data['region'] = '<select name="region" class="btn btn-default"><option value="">Select Region</option>' . $this->Master_Model->generateDropdown($region, 'region', 'region', $region) . '</select>';
         }
 
+        ///Adding Zone To Main Array
         if ($this->input->get('zone') != '') {
             $zone = $this->input->get('zone');
             $conditions[] = "zone = '" . $zone . "'";
             $data['zone'] = '<select name="zone" class="btn btn-default"><option value="">Select Zone</option>' . $this->Master_Model->generateDropdown($this->User_model->getZone(), 'zone', 'zone',$zone) . '</select>';
         }
 
+        ///Adding SM Filters
         if ($this->is_logged_in('SM') || $this->input->get('SM_Emp_Id')) {
             $SM_Emp_Id = $this->is_logged_in('BM') ? $this->Emp_Id : $this->input->get('SM_Emp_Id');
             $bmlist = $this->User_model->getbm(array('SM_Emp_Id = ' . $SM_Emp_Id));
@@ -485,6 +488,7 @@ class User extends MY_Controller {
             array_push($conditions, 'e.SM_Emp_Id = ' . $SM_Emp_Id);
         }
 
+        ///Adding BM Filters @Getting TM List
         if ($this->is_logged_in('BM') || $this->input->get('BM_Emp_Id')) {
             $BM_Emp_Id = $this->is_logged_in('BM') ? $this->Emp_Id : $this->input->get('BM_Emp_Id');
             $tmlist = $this->User_model->getEmployee(array('BM_Emp_Id = ' . $BM_Emp_Id));
