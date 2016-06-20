@@ -13,7 +13,6 @@ class User extends MY_Controller {
         $this->load->helper();
         $this->load->model('User_model');
         $this->load->model('Master_Model');
-
         $this->load->library('form_validation');
     }
 
