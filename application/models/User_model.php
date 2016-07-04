@@ -50,6 +50,7 @@ class User_model extends CI_Model {
 
     public function addchemist($data) {
         $this->db->insert('chemist', $data);
+        return $this->db->insert_id();
     }
 
     public function addchemist_data($data) {
