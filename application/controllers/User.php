@@ -147,7 +147,7 @@ class User extends MY_Controller {
 
                 $data = array(
                     'No_of_Chemist_Met' => $this->input->post('No_of_Chemist_Met'),
-                    'Legendary_Chemist_Met' => $lcm,
+                   
                     'ASTHALIN_MDI' => $this->input->post('ASTHALIN_MDI'),
                     'ASTHALIN_DPI' => $this->input->post('ASTHALIN_DPI'),
                     'AEROCORT_FORTE_ROTACAPS' => $this->input->post('AEROCORT_FORTE_ROTACAPS'),
@@ -175,8 +175,7 @@ class User extends MY_Controller {
 
                 redirect('User/view_chemist', 'refresh');
 
-                $this->User_model->addchemist($data);
-                redirect('User/view_pgdoctor', 'refresh');
+               
             }
             $data = array('title' => 'Add Chemist', 'content' => 'User/chemist', 'view_data' => 'blank', 'page_title' => 'Add Chemist');
             $this->load->view('template3', $data);
@@ -369,7 +368,7 @@ class User extends MY_Controller {
             $data['show'] = $this->User_model->getchemist($conditions);
         }
 
-        $data = array('title' => 'Doctor List', 'content' => 'User/view_chemist', 'view_data' => $data, 'page_title' => ' Doctor List');
+        $data = array('title' => 'Chemist List', 'content' => 'User/view_chemist', 'view_data' => $data, 'page_title' => ' Chemist List');
         $this->load->view('template3', $data);
     }
 
@@ -535,50 +534,7 @@ class User extends MY_Controller {
         redirect('User/view_tour', 'refresh');
     }
 
-    public function view_pgdoctor() {
-        $data['Institution'] = null;
-        $conditions = array();
-        if ($this->is_logged_in('SM')) {
-            $SM_Emp_Id = $this->Emp_Id;
-            $tmlist = $this->User_model->getbm(array('SM_Emp_Id = ' . $SM_Emp_Id));
-            $data['bmlist'] = '<select class="btn btn-default" name="BM_Emp_Id"><option value="0" >Select BM</option>' . $this->Master_Model->generateDropdown($tmlist, 'BM_Emp_Id', 'BM_Name') . '</select>';
-            if ($this->input->get('TM_Emp_Id') > 0) {
-                $data['bmlist'] = '<select class="btn btn-default" name="BM_Emp_Id"><option value="0"  >Select BM</option>' . $this->Master_Model->generateDropdown($tmlist, 'BM_Emp_Id', 'BM_Name', $this->input->get('BM_Emp_Id')) . '</select>';
-            }
-            $data['show'] = $this->User_model->view_all(array(
-                'DrStatus = 2', 'delstatus = 1', 'SM_Emp_Id = ' . $SM_Emp_Id
-            ));
-        }
-        if ($this->is_logged_in('BM') || $this->input->get('BM_Emp_Id')) {
-            $BM_Emp_Id = $this->is_logged_in('BM') ? $this->Emp_Id : $this->input->get('BM_Emp_Id');
-            $tmlist = $this->User_model->getEmployee(array('BM_Emp_Id = ' . $BM_Emp_Id));
-            $data['tmlist'] = '<select class="btn btn-default" name="TM_Emp_Id"><option value="0"  >Select TM</option>' . $this->Master_Model->generateDropdown($tmlist, 'TM_Emp_Id', 'TM_Name') . '</select>';
-            if ($this->input->get('TM_Emp_Id') > 0) {
-                $data['tmlist'] = '<select class="btn btn-default" name="TM_Emp_Id"><option value="0"  >Select TM</option>' . $this->Master_Model->generateDropdown($tmlist, 'TM_Emp_Id', 'TM_Name', $this->input->get('TM_Emp_Id')) . '</select>';
-            }
-        }
-        if ($this->is_logged_in('TM') || $this->input->get('TM_Emp_Id') != '') {
-            $conditions = array(
-                'DrStatus = 2', 'delstatus = 1'
-            );
-            $tm_id = $this->is_logged_in('TM') ? $this->TM_Emp_Id : $this->input->get('TM_Emp_Id');
-            $result = $this->User_model->find_Institution($tm_id);
-            $data['Institution'] = $this->Master_Model->generateDropdown($result, 'Institution', 'Institution');
-            if ($this->input->get('id') != '') {
-                $data['Institution'] = $this->Master_Model->generateDropdown($result, 'Institution', 'Institution', $this->input->get('id'));
-            }
-            array_push($conditions, 'TM_EmpID = ' . $tm_id);
-        }
-        if ($this->input->get('id') != '') {
-            $institute = $this->input->get('id');
-            array_push($conditions, "Institution = '$institute' ");
-        }
-        if (!empty($conditions)) {
-            $data['show'] = $this->User_model->getDoctor($conditions);
-        }
-        $data = array('title' => 'PG Doctor List', 'content' => 'User/view_pgdoctor', 'view_data' => $data, 'page_title' => 'PG Doctor List');
-        $this->load->view('template3', $data);
-    }
+    
 
     public function update_doc() {
         $id = $_GET['id'];
