@@ -649,7 +649,9 @@ class User extends MY_Controller {
     }
 
     function pdf() {
+
         $data = array();
+        $data['response'] = $this->User_model->getpdf(array('tm_id = ' . $this->Emp_Id));
         if ($this->input->post()) {
             $name = $_FILES['file']['name'];
             $ogname = $_FILES['file']['name'];
@@ -659,6 +661,7 @@ class User extends MY_Controller {
             $filename = explode(".", $name);
             $extension = end($filename);
             $name = time() . "." . $extension;
+
 
             $image = move_uploaded_file($tmp, "./images/" . $name);
             $this->db->insert('pdf', array('name' => $name, 'title' => $ogname, 'created_at' => date('Y-m-d H:i:s'), 'tm_id' => $this->Emp_Id));
@@ -671,7 +674,16 @@ class User extends MY_Controller {
     }
 
     function viewPdf($pdfid) {
-        
+        $pdf = $this->User_model->getpdf(array('pdf_id = ' . $pdfid));
+        $pdf = array_shift($pdf);
+
+        $file = FCPATH . '/images/' . $pdf->name;
+        $filename = $pdf->name;
+        header('Content-type: application/pdf');
+        header('Content-Disposition: inline; filename="' . $filename . '"');
+        header('Content-Transfer-Encoding: binary');
+        header('Accept-Ranges: bytes');
+        @readfile($file);
     }
 
 }

@@ -33,3 +33,20 @@
         </div>
     </div>
 </div>
+<div class="row">
+    <?php
+    if (!empty($response)) {
+        foreach ($response as $row) :
+            ?>
+            <div class="col-xs-8 col-sm-6 col-md-3">
+                <div class="thumbnail" align="center">
+                    <h2><?php echo $row->title; ?></h2>
+                    <a href="<?php echo site_url('User/viewPdf/' . $row->pdf_id); ?>" class="btn btn-primary">View</a>
+                </div>
+            </div>
+            <?php
+        endforeach;
+    }
+    ?></p>
+
+</div>
