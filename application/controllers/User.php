@@ -649,9 +649,67 @@ class User extends MY_Controller {
     }
 
     function pdf() {
-
+   $conditions = array();
+        
         $data = array();
-        $data['response'] = $this->User_model->getpdf(array('tm_id = ' . $this->Emp_Id));
+
+        ///TM Level Filters
+        if ($this->is_logged_in('TM') || $this->input->get('TM_Emp_Id')) {
+            $tm_id = $this->is_logged_in('TM') ? $this->TM_Emp_Id : $this->input->get('TM_Emp_Id');
+            array_push($conditions, 'd.tm_id = ' . $tm_id);
+        }
+
+        ///Admin Level Filters
+        if ($this->is_logged_in('admin')) {
+            $data['smlist'] = '<select name="SM_Emp_Id" class="btn btn-default"><option value="">Select SM</option>' . $this->Master_Model->generateDropdown($this->User_model->getSM(), 'SM_Emp_Id', 'SM_Name') . '</select>';
+            $data['zone'] = '<select name="zone" class="btn btn-default"><option value="">Select Zone</option>' . $this->Master_Model->generateDropdown($this->User_model->getZone(), 'zone', 'zone') . '</select>';
+            $data['region'] = '<select name="region" class="btn btn-default"><option value="">Select Region</option>' . $this->Master_Model->generateDropdown($this->User_model->getRegion(), 'region', 'region') . '</select>';
+        }
+
+        ///Region Level Filters, Adding Regions in main array
+        if ($this->input->get('region') != '') {
+            $region = $this->input->get('region');
+            $conditions[] = "region = '" . $region . "'";
+            $data['region'] = '<select name="region" class="btn btn-default"><option value="">Select Region</option>' . $this->Master_Model->generateDropdown($region, 'region', 'region', $region) . '</select>';
+        }
+
+        ///Adding Zones in main array
+        if ($this->input->get('zone') != '') {
+            $zone = $this->input->get('zone');
+            $conditions[] = "zone = '" . $zone . "'";
+            $data['zone'] = '<select name="zone" class="btn btn-default"><option value="">Select Zone</option>' . $this->Master_Model->generateDropdown($this->User_model->getZone(), 'zone', 'zone', $zone) . '</select>';
+        }
+
+        ///Add SM Level Filters
+        if ($this->is_logged_in('SM') || $this->input->get('SM_Emp_Id')) {
+            $SM_Emp_Id = $this->is_logged_in('BM') ? $this->Emp_Id : $this->input->get('SM_Emp_Id');
+            $bmlist = $this->User_model->getbm(array('SM_Emp_Id = ' . $SM_Emp_Id));
+            $data['bmlist'] = '<select class="btn btn-default" name="BM_Emp_Id"><option value="0" >Select BM</option>' . $this->Master_Model->generateDropdown($bmlist, 'BM_Emp_Id', 'BM_Name') . '</select>';
+            if ($this->input->get('Bm_Emp_Id') > 0) {
+                $data['tmlist'] = '<select class="btn btn-default" name="TM_Emp_Id"><option value="0"  >Select TM</option>' . $this->Master_Model->generateDropdown($tmlist, 'TM_Emp_Id', 'TM_Name', $this->input->get('TM_Emp_Id')) . '</select>';
+            }
+
+            array_push($conditions, 'e.SM_Emp_Id = ' . $SM_Emp_Id);
+        }
+
+        ///Adding BM Level filters
+        if ($this->is_logged_in('BM') || $this->input->get('BM_Emp_Id')) {
+            $BM_Emp_Id = $this->is_logged_in('BM') ? $this->Emp_Id : $this->input->get('BM_Emp_Id');
+            $tmlist = $this->User_model->getEmployee(array('BM_Emp_Id = ' . $BM_Emp_Id));
+            $data['tmlist'] = '<select class="btn btn-default" name="TM_Emp_Id"><option value="0" >Select TM</option>' . $this->Master_Model->generateDropdown($tmlist, 'TM_Emp_Id', 'TM_Name') . '</select>';
+
+            if ($this->input->get('TM_Emp_Id') > 0) {
+
+                $data['tmlist'] = '<select class="btn btn-default" name="TM_Emp_Id"><option value="0"  >Select TM</option>' . $this->Master_Model->generateDropdown($tmlist, 'TM_Emp_Id', 'TM_Name', $this->input->get('TM_Emp_Id')) . '</select>';
+            }
+            array_push($conditions, 'e.BM_Emp_Id = ' . $BM_Emp_Id);
+        }
+if (!empty($conditions)) {
+            $data['response'] = $this->User_model->getpdf($conditions);
+              
+        }
+        
+      
         if ($this->input->post()) {
             $name = $_FILES['file']['name'];
             $ogname = $_FILES['file']['name'];

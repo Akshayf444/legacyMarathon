@@ -255,7 +255,7 @@ class User_model extends CI_Model {
     }
 
     function getpdf($condition = array()) {
-        $sql = "SELECT * FROM pdf ";
+        $sql = "SELECT * FROM pdf d INNER JOIN tbl_employee_master e ON e.TM_Emp_Id = d.tm_id ";
         $sql .=!empty($condition) ? " WHERE " . join(" AND ", $condition) : " ";
         $query = $this->db->query($sql);
         return $query->result();
