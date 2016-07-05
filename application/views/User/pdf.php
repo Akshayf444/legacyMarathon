@@ -20,7 +20,7 @@
 
                 <div class="form_group">
                     Choose your file: <br /> 
-                    <input name="file[]" type="file" id="file" class="form-control" />
+                    <input name="file" type="file" id="file" class="form-control" />
                 </div>
                 <br>
                 <div class="modal-footer">

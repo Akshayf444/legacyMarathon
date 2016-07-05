@@ -661,9 +661,9 @@ class User extends MY_Controller {
 
            
                 $image = move_uploaded_file($tmp, "./images/" . $name);
-                $this->db->insert('pdf', array('name' => $filename, 'created_at' => date('Y-m-d H:i:s'), 'tm_id' => $this->Emp_Id));
+                $this->db->insert('pdf', array('name' => $extension, 'created_at' => date('Y-m-d H:i:s'), 'tm_id' => $this->Emp_Id));
 
-                redirect('User/pdf', 'refresh');
+//                redirect('User/pdf', 'refresh');
             
         }
 
