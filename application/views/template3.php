@@ -170,6 +170,7 @@
                                                     <li class=""><a href="<?php echo site_url('User/view_tour'); ?>"><i class="fa fa-circle-o"></i>  View TOUR</a></li>
                                                 </ul>
                                             </li>
+                                            <li class=""><a href="<?php echo site_url('User/pdf'); ?>"><i class="fa fa-file-pdf-o"></i> Pdf</a></li>
                                         </ul>
                                     </section>
                                     <!-- /.sidebar -->

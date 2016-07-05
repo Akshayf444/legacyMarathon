@@ -674,16 +674,20 @@ class User extends MY_Controller {
     }
 
     function viewPdf($pdfid) {
-        $pdf = $this->User_model->getpdf(array('pdf_id = ' . $pdfid));
-        $pdf = array_shift($pdf);
+        $pdf = $this->User_model->getpdf(array('pdf_id = ' . $pdfid, 'tm_id = ' . $this->Emp_Id));
+        if (!empty($pdf)) {
+            $pdf = array_shift($pdf);
 
-        $file = FCPATH . '/images/' . $pdf->name;
-        $filename = $pdf->name;
-        header('Content-type: application/pdf');
-        header('Content-Disposition: inline; filename="' . $filename . '"');
-        header('Content-Transfer-Encoding: binary');
-        header('Accept-Ranges: bytes');
-        @readfile($file);
+            $file = FCPATH . '/images/' . $pdf->name;
+            $filename = $pdf->name;
+            header('Content-type: application/pdf');
+            header('Content-Disposition: inline; filename="' . $filename . '"');
+            header('Content-Transfer-Encoding: binary');
+            header('Accept-Ranges: bytes');
+            @readfile($file);
+        }  else {
+            echo 'OOPS !!! File Not Found';
+        }
     }
 
 }
