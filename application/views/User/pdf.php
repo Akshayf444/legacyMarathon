@@ -1,9 +1,11 @@
 <?php if ($this->session->userdata('Designation') == 'TM') { ?>
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-12 col-xs-12">
             <input type="button" data-toggle="modal" data-target="#myModal1" class="btn btn-primary pull-right" value="Upload PDF">
+
         </div>
     </div>
+    <br/>
     <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
 
@@ -36,19 +38,24 @@
     </div>
 <?php } ?>
 <div class="row">
-    <?php
-    if (!empty($response)) {
-        foreach ($response as $row) :
-            ?>
-            <div class="col-xs-8 col-sm-6 col-md-3">
-                <div class="thumbnail" align="center">
-                    <h2><?php echo $row->title; ?></h2>
-                    <a href="<?php echo site_url('User/viewPdf/' . $row->pdf_id); ?>" class="btn btn-primary">View</a>
-                </div>
-            </div>
+    <div class="col-xs-12">
+        <table class="table table-bordered panel">
+            <tr>
+                <th>Name</th>
+                <th>Action</th>
+            </tr>
             <?php
-        endforeach;
-    }
-    ?></p>
-
+            if (!empty($response)) {
+                foreach ($response as $row) :
+                    ?>
+                    <tr>
+                        <td><?php echo $row->title; ?></td>
+                        <td><a href="<?php echo site_url('User/viewPdf/' . $row->pdf_id); ?>" class="btn btn-info btn-xs pull-right">View</a></td>
+                    </tr>
+                    <?php
+                endforeach;
+            }
+            ?>
+        </table>
+    </div>
 </div>
