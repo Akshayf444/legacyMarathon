@@ -254,4 +254,11 @@ class User_model extends CI_Model {
         return $query->result();
     }
 
+    function getPDF($condition = array()) {
+        $sql = "SELECT * FROM pdf ";
+        $sql .=!empty($condition) ? " WHERE " . join(" AND ", $condition) : " ";
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
+
 }

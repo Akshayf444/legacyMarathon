@@ -652,6 +652,7 @@ class User extends MY_Controller {
         $data = array();
         if ($this->input->post()) {
             $name = $_FILES['file']['name'];
+            $ogname = $_FILES['file']['name'];
             $tmp = $_FILES['file']['tmp_name'];
             $file_size = $_FILES['file']['size'];
             $date = date('Y-m-d');
@@ -660,13 +661,17 @@ class User extends MY_Controller {
             $name = time() . "." . $extension;
 
             $image = move_uploaded_file($tmp, "./images/" . $name);
-            $this->db->insert('pdf', array('name' => $name, 'created_at' => date('Y-m-d H:i:s'), 'tm_id' => $this->Emp_Id));
+            $this->db->insert('pdf', array('name' => $name, 'title' => $ogname, 'created_at' => date('Y-m-d H:i:s'), 'tm_id' => $this->Emp_Id));
 
             redirect('User/pdf', 'refresh');
         }
 
         $data = array('title' => 'PDF', 'page_title' => 'PDF', 'view_data' => $data, 'content' => 'User/pdf');
         $this->load->view('template3', $data);
+    }
+
+    function viewPdf($pdfid) {
+        
     }
 
 }

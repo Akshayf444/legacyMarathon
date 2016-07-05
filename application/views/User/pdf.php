@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-lg-12">
-        <input type="button" data-toggle="modal" data-target="#myModal1" class="btn btn-primary" value="Upload PDF">
+        <input type="button" data-toggle="modal" data-target="#myModal1" class="btn btn-primary pull-right" value="Upload PDF">
     </div>
 </div>
 <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
