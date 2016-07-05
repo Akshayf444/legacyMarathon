@@ -90,3 +90,43 @@
         </div>
     </div>
 </div>
+
+
+ <div class="row">
+    <div class="col-lg-12">
+        <input type="button"   class="btn btn-primary pull-right " value="PDF Upload" data-toggle="modal" data-target="#myModal1">
+    </div>
+</div>
+  
+  
+ <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">PDF Upload</h4>
+            </div> 
+            <?php
+            $attribute = array('enctype' => 'multipart/form-data', 'name' => 'form1', 'id' => 'form1');
+            echo form_open('User/image_add', $attribute);
+            ?>
+            <div class="modal-body">
+                <h5 style="color: red">Image Size Should Be less than 90 KB</h5>
+
+                <div class="form_group">
+                    Choose your file: <br /> 
+                    <input name="file" type="file" id="file" class="form-control" />
+                </div>
+                <br>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="submit" id="save"  name="submit" class="btn btn-primary">Save</button>
+
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+ </div>
+     

@@ -653,5 +653,7 @@ class User extends MY_Controller {
         $data = array('title' => 'Upadte Tour', 'content' => 'User/edit_tour', 'page_title' => 'Update Tour', 'view_data' => $data);
         $this->load->view('template3', $data);
     }
-
+public function pdf_add($data) {
+        $this->db->insert('pdf', $data);
+    }
 }
