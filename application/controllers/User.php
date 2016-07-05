@@ -649,6 +649,7 @@ class User extends MY_Controller {
     }
 
     function pdf() {
+        $data = array();
         if ($this->input->post()) {
             $name = $_FILES['file']['name'];
             $tmp = $_FILES['file']['tmp_name'];
@@ -658,15 +659,10 @@ class User extends MY_Controller {
             $extension = end($filename);
             $name = time() . "." . $extension;
 
-            if ($file_size >= (int) (1024 * 1000)) {
-                $this->session->set_userdata('message', $this->Master_Model->DisplayAlert('File Size Should Be Less Than 100 KB.', 'danger'));
-                redirect('User/CompanyList', 'refresh');
-            } else {
-                $image = move_uploaded_file($tmp, "./images/" . $name);
-                $this->db->insert('pdf', array('name' => $filename, 'created_at' => date('Y-m-d H:i:s'), 'tm_id' => $this->Emp_Id));
+            $image = move_uploaded_file($tmp, "./images/" . $name);
+            $this->db->insert('pdf', array('name' => $name, 'created_at' => date('Y-m-d H:i:s'), 'tm_id' => $this->Emp_Id));
 
-                redirect('User/pdf', 'refresh');
-            }
+            redirect('User/pdf', 'refresh');
         }
 
         $data = array('title' => 'PDF', 'page_title' => 'PDF', 'view_data' => $data, 'content' => 'User/pdf');
