@@ -650,6 +650,10 @@ class User extends MY_Controller {
 
 
     function pdf() {
+        
+       
+        $data = array();
+         $data['response'] = $this->User_model->getpdf($this->Emp_Id);
         if ($this->input->post()) {
             $name = $_FILES['file']['name'];
             $tmp = $_FILES['file']['tmp_name'];
@@ -659,17 +663,17 @@ class User extends MY_Controller {
             $extension = end($filename);
             $name = time() . "." . $extension;
 
-           
-                $image = move_uploaded_file($tmp, "./images/" . $name);
-                $this->db->insert('pdf', array('name' => $extension, 'created_at' => date('Y-m-d H:i:s'), 'tm_id' => $this->Emp_Id));
 
-//                redirect('User/pdf', 'refresh');
-            
+            $image = move_uploaded_file($tmp, "./images/" . $name);
+            $this->db->insert('pdf', array('name' => $name, 'created_at' => date('Y-m-d H:i:s'), 'tm_id' => $this->Emp_Id));
+
+            redirect('User/pdf', 'refresh');
+
         }
 
-        $data = array('title' => 'PDF', 'page_title' => 'PDF', 'view_data' => 'blank', 'content' => 'User/pdf');
+        $data = array('title' => 'PDF', 'page_title' => 'PDF', 'view_data' => $data, 'content' => 'User/pdf');
         $this->load->view('template3', $data);
     }
 
-
+    
 }

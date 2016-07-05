@@ -253,5 +253,11 @@ class User_model extends CI_Model {
         $query = $this->db->query($sql);
         return $query->result();
     }
+     public function getpdf($id){
+         $sql="select * from pdf  where  tm_id='$id'";
+         $query = $this->db->query($sql);
+        
+        return $query->result();
+     }
 
 }

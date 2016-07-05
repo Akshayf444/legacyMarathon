@@ -33,3 +33,25 @@
         </div>
     </div>
 </div>
+<div class="row">
+    <?php
+    if (!empty($response)) {
+        foreach ($response as $row) :
+            ?>
+            <div class="col-xs-8 col-sm-6 col-md-3">
+                <div class="thumbnail">
+                  
+                    <img src="<?php echo base_url(). "images/" . $row->name; ?>" height="260px" width="250px">
+                    <div class="caption">
+
+                        
+                               
+                    </div>
+                </div>
+            </div>
+            <?php
+        endforeach;
+    }
+    ?></p>
+
+</div>
